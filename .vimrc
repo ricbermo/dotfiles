@@ -40,10 +40,28 @@ set shiftwidth=2
 set tabstop=2
 let mapleader=","
 set autowrite
+set ruler
+" Menu for autocomplete for a path
+set wildmenu
+set wildmode=list:longest,full
+" Set columns, lines and line numbers
+augroup vimrc
+  autocmd!
+  autocmd GuiEnter * set columns=120 lines=70 number
+augroup END
+
+" don't scroll off the edge of the page
+set scrolloff=5
 
 " Open new split panes to right and bottom, which feels more natural
 set splitbelow
 set splitright
+
+" Disable vim backups
+set nobackup
+
+" Disable swapfile
+ set noswapfile
 
 " Go to tab by number
 noremap <leader>1 1gt
@@ -75,7 +93,8 @@ map <Leader>rr :Dispatch clear; rspec %<CR>
 map <Leader>tr :Dispatch clear; npm test %<CR>
 
 " NERDTree config
-map <C-b> :NERDTreeToggle<CR>
+map <Leader>b :NERDTreeToggle<CR>
+map <Leader>fnt :NERDTreeFind<CR>
 
 " ctrlp config
 let g:ctrlp_custom_ignore = {
