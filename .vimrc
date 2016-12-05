@@ -25,6 +25,8 @@ Plugin 'mattn/emmet-vim'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'tpope/vim-dispatch'
 Plugin 'rking/ag.vim'
+Plugin 'elzr/vim-json'
+Plugin 'mxw/vim-jsx'
 
 call vundle#end()
 
@@ -134,3 +136,9 @@ highlight link SyntasticStyleWarningSign SignColumn
 
 " Trim whitespace on save: vim-better-whitespace
 autocmd BufWritePre * StripWhitespace
+
+" Vim JSX config
+let g:jsx_ext_required = 0
+
+" Folding
+setlocal foldmethod=syntax
