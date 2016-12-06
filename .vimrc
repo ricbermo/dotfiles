@@ -46,6 +46,13 @@ set ruler
 " Menu for autocomplete for a path
 set wildmenu
 set wildmode=list:longest,full
+" Folding
+set foldmethod=syntax
+set foldlevel=9 " dont fold the code by default
+
+" Mouse support
+set mouse=a
+
 " Set columns, lines and line numbers
 augroup vimrc
   autocmd!
@@ -140,5 +147,5 @@ autocmd BufWritePre * StripWhitespace
 " Vim JSX config
 let g:jsx_ext_required = 0
 
-" Folding
-setlocal foldmethod=syntax
+" JSON vim
+let g:vim_json_syntax_conceal = 0
