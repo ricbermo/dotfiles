@@ -16,8 +16,7 @@ exec 'set runtimepath^='.g:dein_dir
 call dein#begin(expand('~/.config/nvim/dein'))
 
 call dein#add('Shougo/dein.vim')
-" call dein#add('ctrlpvim/ctrlp.vim')
-call dein#add('cloudhead/neovim-fuzzy')
+call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('benmills/vimux')
 call dein#add('tpope/vim-fugitive')
@@ -104,14 +103,10 @@ map <Leader>b :NERDTreeToggle<CR>
 map <Leader>fnt :NERDTreeFind<CR>
 
 " ctrlp config
-" let g:ctrlp_custom_ignore = {
-" \ 'dir':  '\.git$\|public$|log\|tmp$\|node_modules$\|bower_components$\|hooks$\|plugins$\|resources$\|platforms$',
-" \ 'file': '\.so$\|\.dat$|\.DS_Store$'
-" \ }
-
-" neo fuzzy fnder
-nnoremap <C-p> :FuzzyOpen<CR>
-
+let g:ctrlp_custom_ignore = {
+\ 'dir':  '\.git$\|public$|log\|tmp$\|node_modules$\|bower_components$\|hooks$\|plugins$\|resources$\|platforms$',
+\ 'file': '\.so$\|\.dat$|\.DS_Store$'
+\ }
 
 " Airline config
 let g:airline_powerline_fonts = 1
