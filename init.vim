@@ -33,6 +33,7 @@ call dein#add('tpope/vim-dispatch')
 call dein#add('eugen0329/vim-esearch')
 call dein#add('morhetz/gruvbox')
 call dein#add('roxma/vim-tmux-clipboard')
+call dein#add('tpope/vim-obsession')
 
 call dein#end()
 
