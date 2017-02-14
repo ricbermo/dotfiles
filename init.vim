@@ -16,6 +16,8 @@ exec 'set runtimepath^='.g:dein_dir
 call dein#begin(expand('~/.config/nvim/dein'))
 
 call dein#add('Shougo/dein.vim')
+call dein#add('ervandew/supertab')
+call dein#add('Shougo/deoplete.nvim')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('benmills/vimux')
@@ -34,6 +36,9 @@ call dein#add('eugen0329/vim-esearch')
 call dein#add('morhetz/gruvbox')
 call dein#add('roxma/vim-tmux-clipboard')
 call dein#add('tpope/vim-obsession')
+call dein#add('SirVer/ultisnips')
+call dein#add('honza/vim-snippets')
+
 
 call dein#end()
 
@@ -210,3 +215,12 @@ let g:polyglot_disabled = [
 \ 'xls',
 \ 'yard',
 \]
+
+" enable deoplete
+let g:deoplete#enable_at_startup = 1
+set completeopt=longest,menuone,preview
+
+" enable supertab <tab> for everything but ultisnippets
+autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:UltiSnipsExpandTrigger="<C-j>"
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
