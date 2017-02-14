@@ -110,7 +110,7 @@ map <Leader>fnt :NERDTreeFind<CR>
 
 " ctrlp config
 let g:ctrlp_custom_ignore = {
-\ 'dir':  '\.git$\|public$|log\|tmp$\|node_modules$\|bower_components$\|hooks$\|plugins$\|resources$\|platforms$',
+\ 'dir':  '\.git$\|public$|log\|tmp$\|node_modules$\|bower_components$\|hooks$\|plugins$\|resources$\|platforms$\|_build$',
 \ 'file': '\.so$\|\.dat$|\.DS_Store$'
 \ }
 
