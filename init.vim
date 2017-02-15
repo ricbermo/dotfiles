@@ -63,6 +63,7 @@ set wildmenu
 set wildmode=list:longest,full
 set foldmethod=syntax
 set foldlevel=9
+set clipboard+=unnamedplus
 " set mouse=a
 augroup vimrc
   autocmd!
@@ -88,7 +89,6 @@ noremap <leader>0 :tablast<CR>
 noremap <leader>w :tabclose<CR>
 noremap <leader>t :tabnew<CR>
 
-" Git Support
 noremap <leader>gb :Gblame<CR>
 noremap <leader>gs :Gstatus<CR>
 noremap <leader>gd :Gdiff<CR>
