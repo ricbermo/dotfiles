@@ -221,6 +221,6 @@ let g:deoplete#enable_at_startup = 1
 set completeopt=longest,menuone,preview
 
 " enable supertab <tab> for everything but ultisnippets
-autocmd FileType javascript let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:UltiSnipsExpandTrigger="<C-j>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
