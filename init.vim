@@ -38,6 +38,7 @@ call dein#add('roxma/vim-tmux-clipboard')
 call dein#add('tpope/vim-obsession')
 call dein#add('SirVer/ultisnips')
 call dein#add('honza/vim-snippets')
+call dein#add('wakatime/vim-wakatime')
 
 
 call dein#end()
