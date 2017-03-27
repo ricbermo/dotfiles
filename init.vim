@@ -33,12 +33,13 @@ call dein#add('mattn/emmet-vim')
 call dein#add('ntpeters/vim-better-whitespace')
 call dein#add('tpope/vim-dispatch')
 call dein#add('eugen0329/vim-esearch')
-call dein#add('morhetz/gruvbox')
+call dein#add('morhetz/gruvbox') " theme
 call dein#add('roxma/vim-tmux-clipboard')
 call dein#add('tpope/vim-obsession')
 call dein#add('SirVer/ultisnips')
 call dein#add('honza/vim-snippets')
 call dein#add('wakatime/vim-wakatime')
+call dein#add('sbdchd/neoformat')
 
 
 call dein#end()
@@ -225,3 +226,7 @@ set completeopt=longest,menuone,preview
 let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:UltiSnipsExpandTrigger="<C-j>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+" prettier formatting tool
+autocmd BufWritePre,BufEnter *.js Neoformat
+let g:neoformat_only_msg_on_error = 1
