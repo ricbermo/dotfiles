@@ -3,6 +3,7 @@ if &compatible
 endif
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 
 let g:dein_repo = 'https://github.com/Shougo/dein.vim.git'
 let g:dein_dir = '~/.config/nvim/dein/repos/github.com/Shougo/dein.vim'
@@ -23,7 +24,7 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('benmills/vimux')
 call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-commentary')
-call dein#add('neomake/neomake')
+call dein#add('w0rp/ale') " lint engine
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
 call dein#add('sheerun/vim-polyglot')
@@ -34,11 +35,11 @@ call dein#add('ntpeters/vim-better-whitespace')
 call dein#add('tpope/vim-dispatch')
 call dein#add('eugen0329/vim-esearch')
 call dein#add('morhetz/gruvbox') " theme
+call dein#add('rakr/vim-one') " theme
 call dein#add('roxma/vim-tmux-clipboard')
 call dein#add('tpope/vim-obsession')
 call dein#add('SirVer/ultisnips')
 call dein#add('honza/vim-snippets')
-call dein#add('wakatime/vim-wakatime')
 call dein#add('sbdchd/neoformat')
 
 
@@ -51,6 +52,7 @@ endif
 filetype plugin indent on
 syntax enable
 
+set termguicolors
 set rnu
 set noerrorbells
 set novisualbell
@@ -119,13 +121,20 @@ let g:ctrlp_custom_ignore = {
 " Airline config
 let g:airline_powerline_fonts = 1
 set laststatus=2
-let g:airline_theme='luna'
+let g:airline_theme='one'
+call airline#parts#define_function('ALE', 'ALEGetStatusLine')
+call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
+let g:airline_section_error = airline#section#create_right(['ALE'])
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Theming
-set termguicolors
-colorscheme gruvbox
+" colorscheme gruvbox
+" set background=dark
+" let g:gruvbox_contrast='hard'
+colorscheme one
 set background=dark
-let g:gruvbox_contrast='hard'
+let g:one_allow_italics = 1
 
 " Trim whitespace on save: vim-better-whitespace
 autocmd BufWritePre * StripWhitespace
@@ -138,15 +147,6 @@ let g:esearch = {
 \ 'batch_size': 1000,
 \ 'use':        ['word_under_cursor', 'hlsearch', 'clipboard'],
 \}
-
-" neomake
-autocmd! BufWritePost,BufEnter * Neomake
-let g:neomake_javascript_enabled_makers = ['eslint']
-nmap <Leader><Space>o :lopen<CR>      " open location window
-nmap <Leader><Space>c :lclose<CR>     " close location window
-nmap <Leader><Space>, :ll<CR>         " go to current error/warning
-nmap <Leader><Space>n :lnext<CR>      " next error/warning
-nmap <Leader><Space>p :lprev<CR>      " previous error/warning
 
 " disable poliglot langs
 let g:polyglot_disabled = [
@@ -228,5 +228,14 @@ let g:UltiSnipsExpandTrigger="<C-j>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " prettier formatting tool
-autocmd BufWritePre,BufEnter *.js Neoformat
+autocmd FileType javascript set formatprg=prettier-eslint\ --stdin
+autocmd BufWritePre *.js Neoformat
 let g:neoformat_only_msg_on_error = 1
+let g:neoformat_try_formatprg = 1
+
+" ale config
+let g:ale_linters = { 'javascript': ['eslint'] }
+let g:ale_sign_column_always = 1
+" lint only on save
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
