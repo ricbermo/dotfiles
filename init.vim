@@ -1,6 +1,8 @@
 if &compatible
   set nocompatible
 endif
+set encoding=utf8
+set nowrap
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -41,6 +43,8 @@ call dein#add('tpope/vim-obsession')
 call dein#add('SirVer/ultisnips')
 call dein#add('honza/vim-snippets')
 call dein#add('sbdchd/neoformat')
+call dein#add('vim-scripts/BufOnly.vim') " delete all buffers but the current
+call dein#add('ryanoasis/vim-devicons')
 
 
 call dein#end()
@@ -90,7 +94,7 @@ noremap <leader>7 7gt
 noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<CR>
-noremap <leader>w :tabclose<CR>
+noremap <leader>w :bd<CR>
 noremap <leader>t :tabnew<CR>
 
 noremap <leader>gb :Gblame<CR>
@@ -125,8 +129,8 @@ let g:airline_theme='one'
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
 call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
 let g:airline_section_error = airline#section#create_right(['ALE'])
-" let g:airline#extensions#tabline#enabled = 1
-" let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Theming
 " colorscheme gruvbox
@@ -239,3 +243,8 @@ let g:ale_sign_column_always = 1
 " lint only on save
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
+
+
+" OSX stupid backspace fix
+set backspace=indent,eol,start
+
