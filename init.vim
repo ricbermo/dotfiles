@@ -72,16 +72,18 @@ set wildmode=list:longest,full
 set foldmethod=syntax
 set foldlevel=9
 set clipboard+=unnamedplus
-" set mouse=a
 augroup vimrc
   autocmd!
-  autocmd GuiEnter * set columns=120 lines=70 number
+  autocmd GuiEnter * set columns=90 lines=70 number
 augroup END
 set scrolloff=5
 set splitbelow
 set splitright
 set nobackup
 set noswapfile
+set wrap
+set linebreak
+set nolist
 
 " Go to tab by number
 noremap <leader>1 1gt
