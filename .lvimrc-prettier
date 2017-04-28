@@ -1,0 +1,6 @@
+" prettier formatting tool
+autocmd FileType javascript set formatprg=prettier-eslint\ --stdin
+autocmd BufWritePre *.js Neoformat
+let g:neoformat_only_msg_on_error = 1
+let g:neoformat_try_formatprg = 1
+

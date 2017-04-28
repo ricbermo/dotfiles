@@ -1,8 +1,13 @@
+" Ricardo Berdejo's nvim config file
+" Use this for global / shared configs and use
+" embear/vim-localvimrc to load local configs
+"
+" Enjoy
+
 if &compatible
   set nocompatible
 endif
 set encoding=utf8
-set nowrap
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -24,6 +29,7 @@ call dein#add('Shougo/deoplete.nvim')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('benmills/vimux')
+call dein#add('tpope/vim-dispatch')
 call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-commentary')
 call dein#add('w0rp/ale') " lint engine
@@ -34,7 +40,6 @@ call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-surround')
 call dein#add('mattn/emmet-vim')
 call dein#add('ntpeters/vim-better-whitespace')
-call dein#add('tpope/vim-dispatch')
 call dein#add('eugen0329/vim-esearch')
 call dein#add('morhetz/gruvbox') " theme
 call dein#add('rakr/vim-one') " theme
@@ -45,7 +50,8 @@ call dein#add('honza/vim-snippets')
 call dein#add('sbdchd/neoformat')
 call dein#add('vim-scripts/BufOnly.vim') " delete all buffers but the current
 call dein#add('ryanoasis/vim-devicons')
-
+call dein#add('janko-m/vim-test')
+call dein#add('embear/vim-localvimrc')
 
 call dein#end()
 
@@ -97,7 +103,7 @@ noremap <leader>8 8gt
 noremap <leader>9 9gt
 noremap <leader>0 :tablast<CR>
 noremap <leader>w :bd<CR>
-noremap <leader>t :tabnew<CR>
+noremap <leader>tn :tabnew<CR>
 
 noremap <leader>gb :Gblame<CR>
 noremap <leader>gs :Gstatus<CR>
@@ -106,21 +112,14 @@ noremap <leader>gl :Glog<CR>
 noremap <leader>gc :Gcommit<CR>
 noremap <leader>gp :Git push<CR>
 
-" Vimux mapping
-" map <Leader>tj :call VimuxRunCommand("clear; npm test")<CR>
-" map <Leader>rr :call VimuxRunCommand('clear; rspec ' . bufname('%'))<CR>
-
-" Vim-dispatch -> to be replaced by asyncrun.vim when Vim 8
-map <Leader>rr :Dispatch clear; rspec %<CR>
-map <Leader>tr :Dispatch clear; npm test %<CR>
-
 " NERDTree config
 map <Leader>b :NERDTreeToggle<CR>
 map <Leader>fnt :NERDTreeFind<CR>
+let NERDTreeShowLineNumbers=1
 
 " ctrlp config
 let g:ctrlp_custom_ignore = {
-\ 'dir':  '\.git$\|public$|log\|tmp$\|node_modules$\|bower_components$\|hooks$\|plugins$\|resources$\|platforms$\|_build$',
+\ 'dir':  '\.git$\|public$|log\|tmp$\|node_modules$\|bower_components$\|hooks$\|plugins$\|platforms$\|_build$',
 \ 'file': '\.so$\|\.dat$|\.DS_Store$'
 \ }
 
@@ -233,12 +232,6 @@ let g:SuperTabDefaultCompletionType = "<c-n>"
 let g:UltiSnipsExpandTrigger="<C-j>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-" prettier formatting tool
-autocmd FileType javascript set formatprg=prettier-eslint\ --stdin
-autocmd BufWritePre *.js Neoformat
-let g:neoformat_only_msg_on_error = 1
-let g:neoformat_try_formatprg = 1
-
 " ale config
 let g:ale_linters = { 'javascript': ['eslint'] }
 let g:ale_sign_column_always = 1
@@ -246,7 +239,17 @@ let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 
-
 " OSX stupid backspace fix
 set backspace=indent,eol,start
 
+" vim-test
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>l :TestLast<CR>
+nmap <silent> <leader>g :TestVisit<CR>
+
+" load local configuraction files
+let g:localvimrc_file_directory_only=1 " load only from current dir
+let g:localvimrc_persistent=1 " save only the load answers if Y/N uppercase
+let g:localvimrc_whitelist=".lvimrc\(-.+\)"
