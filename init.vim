@@ -7,6 +7,7 @@
 if &compatible
   set nocompatible
 endif
+set mouse=a
 set encoding=utf8
 
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
@@ -252,4 +253,3 @@ nmap <silent> <leader>g :TestVisit<CR>
 " load local configuraction files
 let g:localvimrc_file_directory_only=1 " load only from current dir
 let g:localvimrc_persistent=1 " save only the load answers if Y/N uppercase
-let g:localvimrc_whitelist=".lvimrc\(-.+\)"
