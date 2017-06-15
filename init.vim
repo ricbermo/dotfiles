@@ -53,6 +53,7 @@ call dein#add('vim-scripts/BufOnly.vim') " delete all buffers but the current
 call dein#add('ryanoasis/vim-devicons')
 call dein#add('janko-m/vim-test')
 call dein#add('embear/vim-localvimrc')
+call dein#add('embear/vim-localvimrc')
 
 call dein#end()
 
@@ -70,14 +71,14 @@ set novisualbell
 set expandtab
 set softtabstop=2
 set shiftwidth=2
-set tabstop=2
+" set tabstop=2
 let mapleader=","
 set autowrite
 set ruler
 set wildmenu
 set wildmode=list:longest,full
-set foldmethod=syntax
-set foldlevel=9
+set foldmethod=manual
+" set foldlevel=9
 set clipboard+=unnamedplus
 augroup vimrc
   autocmd!
