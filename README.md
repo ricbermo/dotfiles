@@ -8,3 +8,5 @@
 
 ## Tmux
 1. [plugin manager](https://github.com/tmux-plugins/tpm)
+
+Symblink `ln -s ~/Development/dotfiles/init.vim ~/.config/nvim/init.vim`
