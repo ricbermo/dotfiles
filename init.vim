@@ -29,6 +29,7 @@ call dein#add('ervandew/supertab')
 call dein#add('Shougo/deoplete.nvim')
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('scrooloose/nerdtree')
+call dein#add('Xuyuanp/nerdtree-git-plugin')
 call dein#add('benmills/vimux')
 call dein#add('tpope/vim-dispatch')
 call dein#add('tpope/vim-fugitive')
@@ -53,7 +54,9 @@ call dein#add('vim-scripts/BufOnly.vim') " delete all buffers but the current
 call dein#add('ryanoasis/vim-devicons')
 call dein#add('janko-m/vim-test')
 call dein#add('embear/vim-localvimrc')
-call dein#add('embear/vim-localvimrc')
+call dein#add('mhinz/vim-startify')
+call dein#add('Yggdroot/indentLine')
+call dein#add('terryma/vim-multiple-cursors')
 
 call dein#end()
 
@@ -254,3 +257,20 @@ nmap <silent> <leader>g :TestVisit<CR>
 " load local configuraction files
 let g:localvimrc_file_directory_only=1 " load only from current dir
 let g:localvimrc_persistent=1 " save only the load answers if Y/N uppercase
+
+" nerdtree + startify
+autocmd VimEnter *
+\   if !argc()
+\ |   Startify
+\ |   NERDTree
+\ |   wincmd w
+\ | endif
+
+" indent guides
+let g:indentLine_char = '¦'
+let g:indentLine_enabled = 1
+nmap <silent> <leader>ti :IndentLinesToggle<CR>
+
+
+" delete all buffers
+nmap <silent> <leader>bD :BufOnly<CR>
