@@ -57,6 +57,9 @@ call dein#add('embear/vim-localvimrc')
 call dein#add('mhinz/vim-startify')
 call dein#add('Yggdroot/indentLine')
 call dein#add('terryma/vim-multiple-cursors')
+call dein#add('ternjs/tern_for_vim', { 'on_ft': ['javascript', 'javascript.jsx'] })
+call dein#add('carlitux/deoplete-ternjs', { 'on_ft': ['javascript', 'javascript.jsx'] })
+call dein#add('othree/jspc.vim', { 'on_ft': ['javascript', 'javascript.jsx'] })
 
 call dein#end()
 
@@ -231,6 +234,16 @@ let g:polyglot_disabled = [
 " enable deoplete
 let g:deoplete#enable_at_startup = 1
 set completeopt=longest,menuone,preview
+let g:deoplete#omni#functions = {}
+let g:deoplete#omni#functions.javascript = [
+  \ 'tern#Complete',
+  \ 'jspc#omni'
+\]
+let g:deoplete#sources = {}
+let g:deoplete#sources['javascript.jsx'] = ['buffer', 'file', 'ultisnips', 'ternjs']
+let g:tern#command = ['tern']
+let g:tern#arguments = ['--persistent']
+let g:SuperTabClosePreviewOnPopupClose = 1
 
 " enable supertab <tab> for everything but ultisnippets
 let g:SuperTabDefaultCompletionType = "<c-n>"
@@ -269,8 +282,19 @@ autocmd VimEnter *
 " indent guides
 let g:indentLine_char = '¦'
 let g:indentLine_enabled = 1
+let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'startify']
 nmap <silent> <leader>ti :IndentLinesToggle<CR>
-
 
 " delete all buffers
 nmap <silent> <leader>bD :BufOnly<CR>
+
+let g:ascii = [
+\' ____  _                   _         ____               _       _',
+\'|  _ \(_) ___ __ _ _ __ __| | ___   | __ )  ___ _ __ __| | ___ (_) ___',
+\'| |_) | |/ __/ _` | `__/ _` |/ _ \  |  _ \ / _ \ `__/ _` |/ _ \| |/ _ \',
+\'|  _ <| | (_| (_| | | | (_| | (_) | | |_) |  __/ | | (_| |  __/| | (_) |',
+\'|_| \_\_|\___\__,_|_|  \__,_|\___/  |____/ \___|_|  \__,_|\___|/ |\___/',
+\'                                                              |__/'
+\]
+
+let g:startify_custom_header = 'map(g:ascii + startify#fortune#boxed(), "\"   \".v:val")'
