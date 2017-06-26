@@ -57,7 +57,7 @@ call dein#add('embear/vim-localvimrc')
 call dein#add('mhinz/vim-startify')
 call dein#add('Yggdroot/indentLine')
 call dein#add('terryma/vim-multiple-cursors')
-call dein#add('ternjs/tern_for_vim', { 'on_ft': ['javascript', 'javascript.jsx'] })
+" call dein#add('ternjs/tern_for_vim', { 'on_ft': ['javascript', 'javascript.jsx'] })
 call dein#add('carlitux/deoplete-ternjs', { 'on_ft': ['javascript', 'javascript.jsx'] })
 call dein#add('othree/jspc.vim', { 'on_ft': ['javascript', 'javascript.jsx'] })
 
@@ -241,8 +241,8 @@ let g:deoplete#omni#functions.javascript = [
 \]
 let g:deoplete#sources = {}
 let g:deoplete#sources['javascript.jsx'] = ['buffer', 'file', 'ultisnips', 'ternjs']
-let g:tern#command = ['tern']
-let g:tern#arguments = ['--persistent']
+" let g:tern#command = ['tern']
+" let g:tern#arguments = ['--persistent']
 let g:SuperTabClosePreviewOnPopupClose = 1
 
 " enable supertab <tab> for everything but ultisnippets
