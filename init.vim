@@ -49,7 +49,6 @@ call dein#add('roxma/vim-tmux-clipboard')
 call dein#add('tpope/vim-obsession')
 call dein#add('SirVer/ultisnips')
 call dein#add('honza/vim-snippets')
-call dein#add('sbdchd/neoformat')
 call dein#add('vim-scripts/BufOnly.vim') " delete all buffers but the current
 call dein#add('ryanoasis/vim-devicons')
 call dein#add('janko-m/vim-test')
@@ -57,7 +56,6 @@ call dein#add('embear/vim-localvimrc')
 call dein#add('mhinz/vim-startify')
 call dein#add('Yggdroot/indentLine')
 call dein#add('terryma/vim-multiple-cursors')
-" call dein#add('ternjs/tern_for_vim', { 'on_ft': ['javascript', 'javascript.jsx'] })
 call dein#add('carlitux/deoplete-ternjs', { 'on_ft': ['javascript', 'javascript.jsx'] })
 call dein#add('othree/jspc.vim', { 'on_ft': ['javascript', 'javascript.jsx'] })
 
@@ -77,14 +75,12 @@ set novisualbell
 set expandtab
 set softtabstop=2
 set shiftwidth=2
-" set tabstop=2
 let mapleader=","
 set autowrite
 set ruler
 set wildmenu
 set wildmode=list:longest,full
 set foldmethod=manual
-" set foldlevel=9
 set clipboard+=unnamedplus
 augroup vimrc
   autocmd!
@@ -128,7 +124,7 @@ let NERDTreeShowLineNumbers=1
 " ctrlp config
 let g:ctrlp_custom_ignore = {
 \ 'dir':  '\.git$\|public$|log\|tmp$\|node_modules$\|bower_components$\|hooks$\|plugins$\|platforms$\|_build$',
-\ 'file': '\.so$\|\.dat$|\.DS_Store$'
+\ 'file': '\.so$\|\.dat$|\.DS_Store$|\.lock$'
 \ }
 
 " Airline config
@@ -241,8 +237,6 @@ let g:deoplete#omni#functions.javascript = [
 \]
 let g:deoplete#sources = {}
 let g:deoplete#sources['javascript.jsx'] = ['buffer', 'file', 'ultisnips', 'ternjs']
-" let g:tern#command = ['tern']
-" let g:tern#arguments = ['--persistent']
 let g:SuperTabClosePreviewOnPopupClose = 1
 
 " enable supertab <tab> for everything but ultisnippets
@@ -256,6 +250,8 @@ let g:ale_sign_column_always = 1
 " lint only on save
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
+" Bind F8 to fixing problems with ALE
+nmap <F8> <Plug>(ale_fix)
 
 " OSX stupid backspace fix
 set backspace=indent,eol,start
