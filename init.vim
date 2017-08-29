@@ -56,8 +56,10 @@ call dein#add('embear/vim-localvimrc')
 call dein#add('mhinz/vim-startify')
 call dein#add('Yggdroot/indentLine')
 call dein#add('terryma/vim-multiple-cursors')
-call dein#add('carlitux/deoplete-ternjs', { 'on_ft': ['javascript', 'javascript.jsx'] })
-call dein#add('othree/jspc.vim', { 'on_ft': ['javascript', 'javascript.jsx'] })
+call dein#add('ternjs/tern_for_vim', {'build': 'npm install -g tern', 'on_ft': ['javascript', 'javascript.jsx']})
+call dein#add('carlitux/deoplete-ternjs', {'on_ft': ['javascript', 'javascript.jsx']})
+call dein#add('othree/jspc.vim', {'on_ft': ['javascript', 'javascript.jsx']})
+call dein#add('Raimondi/delimitMate')
 
 call dein#end()
 
@@ -94,6 +96,7 @@ set noswapfile
 set wrap
 set linebreak
 set nolist
+set completeopt=longest,menuone,preview
 
 " Go to tab by number
 noremap <leader>1 1gt
@@ -212,7 +215,6 @@ let g:polyglot_disabled = [
 \ 'slim',
 \ 'solidity',
 \ 'stylus',
-\ 'swift',
 \ 'systemd',
 \ 'textile',
 \ 'thrift',
@@ -229,7 +231,13 @@ let g:polyglot_disabled = [
 
 " enable deoplete
 let g:deoplete#enable_at_startup = 1
-set completeopt=longest,menuone,preview
+let g:deoplete#enable_ignore_case = 1
+let g:deoplete#enable_smart_case = 1
+let g:deoplete#enable_camel_case = 1
+let g:deoplete#enable_refresh_always = 1
+let g:deoplete#max_abbr_width = 0
+let g:deoplete#max_menu_width = 0
+let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
 let g:deoplete#omni#functions = {}
 let g:deoplete#omni#functions.javascript = [
   \ 'tern#Complete',
@@ -237,10 +245,13 @@ let g:deoplete#omni#functions.javascript = [
 \]
 let g:deoplete#sources = {}
 let g:deoplete#sources['javascript.jsx'] = ['buffer', 'file', 'ultisnips', 'ternjs']
+let g:tern_request_timeout = 6000
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
 let g:SuperTabClosePreviewOnPopupClose = 1
 
 " enable supertab <tab> for everything but ultisnippets
-let g:SuperTabDefaultCompletionType = "<c-n>"
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:UltiSnipsExpandTrigger="<C-j>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
@@ -283,6 +294,8 @@ nmap <silent> <leader>ti :IndentLinesToggle<CR>
 
 " delete all buffers
 nmap <silent> <leader>bD :BufOnly<CR>
+" close preview
+noremap <leader>pc :pclose<CR>
 
 let g:ascii = [
 \' ____  _                   _         ____               _       _',
