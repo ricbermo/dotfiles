@@ -26,7 +26,8 @@ call dein#begin(expand('~/.config/nvim/dein'))
 
 call dein#add('Shougo/dein.vim')
 call dein#add('ervandew/supertab')
-call dein#add('Shougo/deoplete.nvim')
+call dein#add('roxma/nvim-completion-manager')
+call dein#add('roxma/nvim-cm-tern', {'on_ft': ['javascript', 'javascript.jsx'], 'build': 'npm install'})
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
@@ -57,7 +58,6 @@ call dein#add('mhinz/vim-startify')
 call dein#add('Yggdroot/indentLine')
 call dein#add('terryma/vim-multiple-cursors')
 call dein#add('ternjs/tern_for_vim', {'build': 'npm install -g tern', 'on_ft': ['javascript', 'javascript.jsx']})
-call dein#add('carlitux/deoplete-ternjs', {'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('othree/jspc.vim', {'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('jiangmiao/auto-pairs')
 call dein#add('luochen1990/rainbow')
@@ -231,29 +231,13 @@ let g:polyglot_disabled = [
 \ 'yard',
 \]
 
-" enable deoplete
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#enable_ignore_case = 1
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#enable_camel_case = 1
-let g:deoplete#enable_refresh_always = 1
-let g:deoplete#max_abbr_width = 0
-let g:deoplete#max_menu_width = 0
-let g:deoplete#omni#input_patterns = get(g:,'deoplete#omni#input_patterns',{})
-let g:deoplete#omni#functions = {}
-let g:deoplete#omni#functions.javascript = [
-  \ 'tern#Complete',
-  \ 'jspc#omni'
-\]
-let g:deoplete#sources = {}
-let g:deoplete#sources['javascript.jsx'] = ['buffer', 'file', 'ultisnips', 'ternjs']
 
+"ternjs config
 let g:tern_request_timeout = 6000
 let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
-let g:SuperTabClosePreviewOnPopupClose = 1
-
 " enable supertab <tab> for everything but ultisnippets
+let g:SuperTabClosePreviewOnPopupClose = 1
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:UltiSnipsExpandTrigger="<C-j>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -303,11 +287,6 @@ let g:indentLine_char = '¦'
 let g:indentLine_enabled = 1
 let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'startify']
 nmap <silent> <leader>ti :IndentLinesToggle<CR>
-
-" delete all buffers
-nmap <silent> <leader>bD :BufOnly<CR>
-" close preview
-noremap <leader>pc :pclose<CR>
 
 let g:ascii = [
 \' ____  _                   _         ____               _       _',
