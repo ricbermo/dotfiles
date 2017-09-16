@@ -59,7 +59,8 @@ call dein#add('terryma/vim-multiple-cursors')
 call dein#add('ternjs/tern_for_vim', {'build': 'npm install -g tern', 'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('carlitux/deoplete-ternjs', {'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('othree/jspc.vim', {'on_ft': ['javascript', 'javascript.jsx']})
-call dein#add('Raimondi/delimitMate')
+call dein#add('jiangmiao/auto-pairs')
+call dein#add('luochen1990/rainbow')
 
 call dein#end()
 
@@ -97,6 +98,7 @@ set wrap
 set linebreak
 set nolist
 set completeopt=longest,menuone,preview
+set hid
 
 " Go to tab by number
 noremap <leader>1 1gt
@@ -245,6 +247,7 @@ let g:deoplete#omni#functions.javascript = [
 \]
 let g:deoplete#sources = {}
 let g:deoplete#sources['javascript.jsx'] = ['buffer', 'file', 'ultisnips', 'ternjs']
+
 let g:tern_request_timeout = 6000
 let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
@@ -277,6 +280,15 @@ nmap <silent> <leader>g :TestVisit<CR>
 " load local configuraction files
 let g:localvimrc_file_directory_only=1 " load only from current dir
 let g:localvimrc_persistent=1 " save only the load answers if Y/N uppercase
+
+" change colors for matching parenthesis
+let g:rainbow_active = 1
+
+let g:ultisnips_javascript = {
+\ 'keyword-spacing': 'always',
+\ 'semi': 'never',
+\ 'space-before-function-paren': 'always',
+\ }
 
 " nerdtree + startify
 autocmd VimEnter *
