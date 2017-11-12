@@ -5,6 +5,7 @@
   a. Install neovim with `pip3`, python3 package manager.
 2. [the_silver_searcher](https://github.com/ggreer/the_silver_searcher), for quick search/find
 3. [Nerd forms][https://github.com/ryanoasis/nerd-fonts] to display icons in NerdTree (recomended font: dejavu sans mono for powerline nerd font)
+4. `brew install ripgrep` for faster CTRLP
 
 ### for JS developement
 4. `npm install -g eslint prettier eslint_d`

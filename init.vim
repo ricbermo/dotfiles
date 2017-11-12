@@ -10,8 +10,9 @@ endif
 set mouse=a
 set encoding=utf8
 
-let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+if (has("termguicolors"))
+ set termguicolors
+endif
 
 let g:dein_repo = 'https://github.com/Shougo/dein.vim.git'
 let g:dein_dir = '~/.config/nvim/dein/repos/github.com/Shougo/dein.vim'
@@ -25,9 +26,10 @@ exec 'set runtimepath^='.g:dein_dir
 call dein#begin(expand('~/.config/nvim/dein'))
 
 call dein#add('Shougo/dein.vim')
+call dein#add('haya14busa/dein-command.vim')
 call dein#add('ervandew/supertab')
 call dein#add('roxma/nvim-completion-manager')
-call dein#add('roxma/nvim-cm-tern', {'on_ft': ['javascript', 'javascript.jsx'], 'build': 'npm install'})
+call dein#add('roxma/nvim-cm-tern', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx'], 'build': 'npm install'})
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
@@ -38,7 +40,6 @@ call dein#add('tpope/vim-commentary')
 call dein#add('w0rp/ale') " lint engine
 call dein#add('vim-airline/vim-airline')
 call dein#add('vim-airline/vim-airline-themes')
-call dein#add('sheerun/vim-polyglot')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-surround')
 call dein#add('mattn/emmet-vim')
@@ -57,10 +58,15 @@ call dein#add('embear/vim-localvimrc')
 call dein#add('mhinz/vim-startify')
 call dein#add('Yggdroot/indentLine')
 call dein#add('terryma/vim-multiple-cursors')
-call dein#add('ternjs/tern_for_vim', {'build': 'npm install -g tern', 'on_ft': ['javascript', 'javascript.jsx']})
-call dein#add('othree/jspc.vim', {'on_ft': ['javascript', 'javascript.jsx']})
+call dein#add('ternjs/tern_for_vim', {'lazy': 1, 'build': 'npm install -g tern', 'on_ft': ['javascript', 'javascript.jsx']})
+call dein#add('othree/jspc.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('jiangmiao/auto-pairs')
 call dein#add('luochen1990/rainbow')
+call dein#add('othree/javascript-libraries-syntax.vim')
+call dein#add('othree/yajs.vim')
+call dein#add('othree/html5.vim')
+call dein#add('HerringtonDarkholme/yats.vim')
+call dein#add('mhartington/oceanic-next') "theme
 
 call dein#end()
 
@@ -78,7 +84,7 @@ set novisualbell
 set expandtab
 set softtabstop=2
 set shiftwidth=2
-let mapleader=","
+let mapleader="\<Space>"
 set autowrite
 set ruler
 set wildmenu
@@ -100,20 +106,7 @@ set nolist
 set completeopt=longest,menuone,preview
 set hid
 
-" Go to tab by number
-noremap <leader>1 1gt
-noremap <leader>2 2gt
-noremap <leader>3 3gt
-noremap <leader>4 4gt
-noremap <leader>5 5gt
-noremap <leader>6 6gt
-noremap <leader>7 7gt
-noremap <leader>8 8gt
-noremap <leader>9 9gt
-noremap <leader>0 :tablast<CR>
-noremap <leader>w :bd<CR>
-noremap <leader>tn :tabnew<CR>
-
+"git
 noremap <leader>gb :Gblame<CR>
 noremap <leader>gs :Gstatus<CR>
 noremap <leader>gd :Gdiff<CR>
@@ -127,28 +120,57 @@ map <Leader>fnt :NERDTreeFind<CR>
 let NERDTreeShowLineNumbers=1
 
 " ctrlp config
+let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+let g:ctrlp_use_caching = 0
 let g:ctrlp_custom_ignore = {
 \ 'dir':  '\.git$\|public$|log\|tmp$\|node_modules$\|bower_components$\|hooks$\|plugins$\|platforms$\|_build$',
 \ 'file': '\.so$\|\.dat$|\.DS_Store$|\.lock$'
 \ }
+let g:ctrlp_funky_syntax_highlight = 1
+nnoremap <leader>f :CtrlPFunky<CR>
 
 " Airline config
 let g:airline_powerline_fonts = 1
 set laststatus=2
-let g:airline_theme='one'
+let g:airline_theme='oceanicnext'
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
 call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
 let g:airline_section_error = airline#section#create_right(['ALE'])
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#buffer_idx_mode = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#keymap_ignored_filetypes = ['nerdtree']
+nmap <leader>1 <Plug>AirlineSelectTab1
+nmap <leader>2 <Plug>AirlineSelectTab2
+nmap <leader>3 <Plug>AirlineSelectTab3
+nmap <leader>4 <Plug>AirlineSelectTab4
+nmap <leader>5 <Plug>AirlineSelectTab5
+nmap <leader>6 <Plug>AirlineSelectTab6
+nmap <leader>7 <Plug>AirlineSelectTab7
+nmap <leader>8 <Plug>AirlineSelectTab8
+nmap <leader>9 <Plug>AirlineSelectTab9
+nmap <leader>- <Plug>AirlineSelectPrevTab
+nmap <leader>+ <Plug>AirlineSelectNextTab
+let g:airline#extensions#tabline#buffer_idx_format = {
+\ '0': '0 ',
+\ '1': '1 ',
+\ '2': '2 ',
+\ '3': '3 ',
+\ '4': '4 ',
+\ '5': '5 ',
+\ '6': '6 ',
+\ '7': '7 ',
+\ '8': '8 ',
+\ '9': '9 '
+\}
 
 " Theming
-" colorscheme gruvbox
-" set background=dark
-" let g:gruvbox_contrast='hard'
-colorscheme one
-set background=dark
-let g:one_allow_italics = 1
+syntax on
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+colorscheme OceanicNext
 
 " Trim whitespace on save: vim-better-whitespace
 autocmd BufWritePre * StripWhitespace
@@ -161,76 +183,6 @@ let g:esearch = {
 \ 'batch_size': 1000,
 \ 'use':        ['word_under_cursor', 'hlsearch', 'clipboard'],
 \}
-
-" disable poliglot langs
-let g:polyglot_disabled = [
-\ 'applescript',
-\ 'ansible',
-\ 'arduino',
-\ 'c++11',
-\ 'c/c++',
-\ 'clojure',
-\ 'cryptol',
-\ 'crystal',
-\ 'cql',
-\ 'cucumber',
-\ 'dart',
-\ 'elm',
-\ 'emberscript',
-\ 'emblem',
-\ 'fish',
-\ 'glsl',
-\ 'go',
-\ 'groovy',
-\ 'handlebars',
-\ 'haskell',
-\ 'haxe',
-\ 'jst',
-\ 'julia',
-\ 'kotlin',
-\ 'latex',
-\ 'livescript',
-\ 'lua',
-\ 'mako',
-\ 'nginx',
-\ 'nim',
-\ 'nix',
-\ 'objc',
-\ 'ocaml',
-\ 'octave',
-\ 'opencl',
-\ 'perl',
-\ 'pgsql',
-\ 'plantuml',
-\ 'powershell',
-\ 'protobuf',
-\ 'pug',
-\ 'puppet',
-\ 'purescript',
-\ 'qml',
-\ 'r-lang',
-\ 'raml',
-\ 'ragel',
-\ 'rust',
-\ 'sbt',
-\ 'scala',
-\ 'slim',
-\ 'solidity',
-\ 'stylus',
-\ 'systemd',
-\ 'textile',
-\ 'thrift',
-\ 'tomdoc',
-\ 'toml',
-\ 'twig',
-\ 'vala',
-\ 'vbnet',
-\ 'vcl',
-\ 'vm',
-\ 'xls',
-\ 'yard',
-\]
-
 
 "ternjs config
 let g:tern_request_timeout = 6000
