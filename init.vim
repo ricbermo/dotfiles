@@ -64,6 +64,7 @@ call dein#add('jiangmiao/auto-pairs')
 call dein#add('luochen1990/rainbow')
 call dein#add('othree/javascript-libraries-syntax.vim')
 call dein#add('othree/yajs.vim')
+call dein#add('mxw/vim-jsx')
 call dein#add('othree/html5.vim')
 call dein#add('HerringtonDarkholme/yats.vim')
 call dein#add('mhartington/oceanic-next') "theme
@@ -130,15 +131,16 @@ let g:ctrlp_funky_syntax_highlight = 1
 nnoremap <leader>f :CtrlPFunky<CR>
 
 " Airline config
+set laststatus=2 "always visible
 let g:airline_powerline_fonts = 1
-set laststatus=2
 let g:airline_theme='oceanicnext'
 call airline#parts#define_function('ALE', 'ALEGetStatusLine')
 call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
 let g:airline_section_error = airline#section#create_right(['ALE'])
+
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_splits = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#buffer_idx_mode = 1
 let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_tab_nr = 1
 let g:airline#extensions#tabline#keymap_ignored_filetypes = ['nerdtree']
@@ -239,6 +241,9 @@ let g:indentLine_char = '¦'
 let g:indentLine_enabled = 1
 let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'startify']
 nmap <silent> <leader>ti :IndentLinesToggle<CR>
+
+"JSX support
+let g:jsx_ext_required = 0
 
 let g:ascii = [
 \' ____  _                   _         ____               _       _',
