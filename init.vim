@@ -38,8 +38,6 @@ call dein#add('tpope/vim-dispatch')
 call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-commentary')
 call dein#add('w0rp/ale') " lint engine
-call dein#add('vim-airline/vim-airline')
-call dein#add('vim-airline/vim-airline-themes')
 call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-surround')
 call dein#add('mattn/emmet-vim')
@@ -68,6 +66,10 @@ call dein#add('mxw/vim-jsx')
 call dein#add('othree/html5.vim')
 call dein#add('HerringtonDarkholme/yats.vim')
 call dein#add('mhartington/oceanic-next') "theme
+call dein#add('itchyny/lightline.vim')
+call dein#add('taohex/lightline-buffer')
+call dein#add('Rykka/lastbuf.vim')
+call dein#add('dracula/vim') "theme
 
 call dein#end()
 
@@ -130,49 +132,12 @@ let g:ctrlp_custom_ignore = {
 let g:ctrlp_funky_syntax_highlight = 1
 nnoremap <leader>f :CtrlPFunky<CR>
 
-" Airline config
-set laststatus=2 "always visible
-let g:airline_powerline_fonts = 1
-let g:airline_theme='oceanicnext'
-call airline#parts#define_function('ALE', 'ALEGetStatusLine')
-call airline#parts#define_condition('ALE', 'exists("*ALEGetStatusLine")')
-let g:airline_section_error = airline#section#create_right(['ALE'])
-
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_splits = 1
-let g:airline#extensions#tabline#fnamemod = ':t'
-let g:airline#extensions#tabline#tab_nr_type = 1
-let g:airline#extensions#tabline#show_tab_nr = 1
-let g:airline#extensions#tabline#keymap_ignored_filetypes = ['nerdtree']
-nmap <leader>1 <Plug>AirlineSelectTab1
-nmap <leader>2 <Plug>AirlineSelectTab2
-nmap <leader>3 <Plug>AirlineSelectTab3
-nmap <leader>4 <Plug>AirlineSelectTab4
-nmap <leader>5 <Plug>AirlineSelectTab5
-nmap <leader>6 <Plug>AirlineSelectTab6
-nmap <leader>7 <Plug>AirlineSelectTab7
-nmap <leader>8 <Plug>AirlineSelectTab8
-nmap <leader>9 <Plug>AirlineSelectTab9
-nmap <leader>- <Plug>AirlineSelectPrevTab
-nmap <leader>+ <Plug>AirlineSelectNextTab
-let g:airline#extensions#tabline#buffer_idx_format = {
-\ '0': '0 ',
-\ '1': '1 ',
-\ '2': '2 ',
-\ '3': '3 ',
-\ '4': '4 ',
-\ '5': '5 ',
-\ '6': '6 ',
-\ '7': '7 ',
-\ '8': '8 ',
-\ '9': '9 '
-\}
-
 " Theming
 syntax on
-let g:oceanic_next_terminal_bold = 1
-let g:oceanic_next_terminal_italic = 1
-colorscheme OceanicNext
+" let g:oceanic_next_terminal_bold = 1
+" let g:oceanic_next_terminal_italic = 1
+" colorscheme OceanicNext
+color dracula
 
 " Trim whitespace on save: vim-better-whitespace
 autocmd BufWritePre * StripWhitespace
@@ -244,6 +209,108 @@ nmap <silent> <leader>ti :IndentLinesToggle<CR>
 
 "JSX support
 let g:jsx_ext_required = 0
+
+"Lightline
+let g:lightline = {
+\ 'colorscheme': 'Dracula',
+\ 'separator': { 'left': '', 'right': '' },
+\ 'active': {
+\   'left': [['mode', 'paste'], ['gitbranch', 'filename', 'modified']],
+\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\ },
+\ 'tabline': {
+\   'left': [ [ 'bufferinfo' ],
+\             [ 'separator' ],
+\             [ 'bufferbefore', 'buffercurrent', 'bufferafter' ], ],
+\   'right': [ [ 'close' ], ],
+\ },
+\ 'component_expand': {
+\   'linter_warnings': 'LightlineLinterWarnings',
+\   'linter_errors': 'LightlineLinterErrors',
+\   'linter_ok': 'LightlineLinterOK',
+\   'buffercurrent': 'lightline#buffer#buffercurrent',
+\   'bufferbefore': 'lightline#buffer#bufferbefore',
+\   'bufferafter': 'lightline#buffer#bufferafter',
+\ },
+\ 'component_type': {
+\   'readonly': 'error',
+\   'linter_warnings': 'warning',
+\   'linter_errors': 'error',
+\   'buffercurrent': 'tabsel',
+\   'bufferbefore': 'raw',
+\   'bufferafter': 'raw',
+\ },
+\ 'component_function': {
+\   'gitbranch': 'LightlineFugitive',
+\   'bufferinfo': 'lightline#buffer#bufferinfo',
+\ },
+\ }
+
+function! LightlineFugitive()
+  if exists('*fugitive#head')
+    let branch = fugitive#head()
+    return branch !=# '' ? ' '.branch : ''
+  endif
+  return ''
+endfunction
+
+function! LightlineLinterWarnings() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
+endfunction
+
+function! LightlineLinterErrors() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
+endfunction
+
+function! LightlineLinterOK() abort
+  let l:counts = ale#statusline#Count(bufnr(''))
+  let l:all_errors = l:counts.error + l:counts.style_error
+  let l:all_non_errors = l:counts.total - l:all_errors
+  return l:counts.total == 0 ? '✓ ' : ''
+endfunction
+
+autocmd User ALELint call lightline#update()
+
+set hidden " allow buffer switching without saving
+set showtabline=2 " always show tabline
+
+" lightline-buffer
+let g:lightline_buffer_modified_icon = '✭'
+let g:lightline_buffer_git_icon = ' '
+let g:lightline_buffer_ellipsis_icon = '..'
+let g:lightline_buffer_expand_left_icon = '◀ '
+let g:lightline_buffer_expand_right_icon = ' ▶'
+let g:lightline_buffer_readonly_icon = ''
+let g:lightline_buffer_show_bufnr = 1
+let g:lightline_buffer_rotate = 0
+let g:lightline_buffer_fname_mod = ':t'
+let g:lightline_buffer_excludes = ['vimfiler']
+
+let g:lightline_buffer_maxflen = 30
+let g:lightline_buffer_maxfextlen = 3
+let g:lightline_buffer_minflen = 16
+let g:lightline_buffer_minfextlen = 3
+let g:lightline_buffer_reservelen = 20
+
+nnoremap <Leader>[ :bprev<CR>
+nnoremap <Leader>] :bnext<CR>
+nnoremap <Leader>db :bd<CR>
+
+
+" reopen last closed buffer
+let g:lastbuf_level=2 "since I'm closing buffers with db
+
+" Map window prefix to ommit W
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
 
 let g:ascii = [
 \' ____  _                   _         ____               _       _',
