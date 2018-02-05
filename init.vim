@@ -33,8 +33,7 @@ call dein#add('roxma/nvim-cm-tern', {'lazy': 1, 'on_ft': ['javascript', 'javascr
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('scrooloose/nerdtree')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
-call dein#add('benmills/vimux')
-call dein#add('tpope/vim-dispatch')
+call dein#add('christoomey/vim-tmux-runner')
 call dein#add('tpope/vim-fugitive')
 call dein#add('tpope/vim-commentary')
 call dein#add('w0rp/ale') " lint engine
@@ -43,8 +42,6 @@ call dein#add('tpope/vim-surround')
 call dein#add('mattn/emmet-vim')
 call dein#add('ntpeters/vim-better-whitespace')
 call dein#add('eugen0329/vim-esearch')
-call dein#add('morhetz/gruvbox') " theme
-call dein#add('rakr/vim-one') " theme
 call dein#add('roxma/vim-tmux-clipboard')
 call dein#add('tpope/vim-obsession')
 call dein#add('SirVer/ultisnips')
@@ -56,20 +53,21 @@ call dein#add('embear/vim-localvimrc')
 call dein#add('mhinz/vim-startify')
 call dein#add('Yggdroot/indentLine')
 call dein#add('terryma/vim-multiple-cursors')
-call dein#add('ternjs/tern_for_vim', {'lazy': 1, 'build': 'npm install -g tern', 'on_ft': ['javascript', 'javascript.jsx']})
-call dein#add('othree/jspc.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('jiangmiao/auto-pairs')
 call dein#add('luochen1990/rainbow')
-call dein#add('othree/javascript-libraries-syntax.vim')
-call dein#add('othree/yajs.vim')
-call dein#add('mxw/vim-jsx')
-call dein#add('othree/html5.vim')
+"javascript config
+call dein#add('pangloss/vim-javascript', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
+call dein#add('ternjs/tern_for_vim', {'lazy': 1, 'build': 'npm install -g tern', 'on_ft': ['javascript', 'javascript.jsx']})
+call dein#add('othree/jspc.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
+call dein#add('othree/javascript-libraries-syntax.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
+call dein#add('mxw/vim-jsx', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('HerringtonDarkholme/yats.vim')
-call dein#add('mhartington/oceanic-next') "theme
+
+call dein#add('othree/html5.vim')
 call dein#add('itchyny/lightline.vim')
 call dein#add('taohex/lightline-buffer')
 call dein#add('Rykka/lastbuf.vim')
-call dein#add('dracula/vim') "theme
+call dein#add('morhetz/gruvbox') " theme
 
 call dein#end()
 
@@ -80,7 +78,6 @@ endif
 filetype plugin indent on
 syntax enable
 
-set termguicolors
 set rnu
 set noerrorbells
 set novisualbell
@@ -109,7 +106,21 @@ set nolist
 set completeopt=longest,menuone,preview
 set hid
 
-"git
+"JS cofig
+let g:used_javascript_libs = 'underscore,react,lodash'
+"ternjs config
+let g:tern_request_timeout = 6000
+let g:tern#command = ["tern"]
+let g:tern#arguments = ["--persistent"]
+"JSX support
+let g:jsx_ext_required = 0
+
+"Testing helpers
+let test#strategy = "vtr"
+let g:test#preserve_screen = 1
+let g:test#runner_commands = ['Jest']
+
+"Git
 noremap <leader>gb :Gblame<CR>
 noremap <leader>gs :Gstatus<CR>
 noremap <leader>gd :Gdiff<CR>
@@ -133,11 +144,8 @@ let g:ctrlp_funky_syntax_highlight = 1
 nnoremap <leader>f :CtrlPFunky<CR>
 
 " Theming
-syntax on
-" let g:oceanic_next_terminal_bold = 1
-" let g:oceanic_next_terminal_italic = 1
-" colorscheme OceanicNext
-color dracula
+colorscheme gruvbox
+set background=dark
 
 " Trim whitespace on save: vim-better-whitespace
 autocmd BufWritePre * StripWhitespace
@@ -151,10 +159,6 @@ let g:esearch = {
 \ 'use':        ['word_under_cursor', 'hlsearch', 'clipboard'],
 \}
 
-"ternjs config
-let g:tern_request_timeout = 6000
-let g:tern#command = ["tern"]
-let g:tern#arguments = ["--persistent"]
 " enable supertab <tab> for everything but ultisnippets
 let g:SuperTabClosePreviewOnPopupClose = 1
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
@@ -172,13 +176,6 @@ nmap <F8> <Plug>(ale_fix)
 
 " OSX stupid backspace fix
 set backspace=indent,eol,start
-
-" vim-test
-nmap <silent> <leader>t :TestNearest<CR>
-nmap <silent> <leader>T :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
-nmap <silent> <leader>l :TestLast<CR>
-nmap <silent> <leader>g :TestVisit<CR>
 
 " load local configuraction files
 let g:localvimrc_file_directory_only=1 " load only from current dir
@@ -207,12 +204,8 @@ let g:indentLine_enabled = 1
 let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'startify']
 nmap <silent> <leader>ti :IndentLinesToggle<CR>
 
-"JSX support
-let g:jsx_ext_required = 0
-
 "Lightline
 let g:lightline = {
-\ 'colorscheme': 'Dracula',
 \ 'separator': { 'left': '', 'right': '' },
 \ 'active': {
 \   'left': [['mode', 'paste'], ['gitbranch', 'filename', 'modified']],
