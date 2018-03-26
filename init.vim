@@ -68,6 +68,8 @@ call dein#add('itchyny/lightline.vim')
 call dein#add('taohex/lightline-buffer')
 call dein#add('Rykka/lastbuf.vim')
 call dein#add('morhetz/gruvbox') " theme
+call dein#add('rakr/vim-one') " theme
+call dein#add('tpope/vim-repeat')
 
 call dein#end()
 
@@ -144,7 +146,8 @@ let g:ctrlp_funky_syntax_highlight = 1
 nnoremap <leader>f :CtrlPFunky<CR>
 
 " Theming
-colorscheme gruvbox
+let g:one_allow_italics = 1
+colorscheme one
 set background=dark
 
 " Trim whitespace on save: vim-better-whitespace
@@ -206,6 +209,7 @@ nmap <silent> <leader>ti :IndentLinesToggle<CR>
 
 "Lightline
 let g:lightline = {
+\ 'colorscheme': 'one',
 \ 'separator': { 'left': '', 'right': '' },
 \ 'active': {
 \   'left': [['mode', 'paste'], ['gitbranch', 'filename', 'modified']],

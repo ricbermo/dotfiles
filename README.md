@@ -1,8 +1,9 @@
 # dotfiles
 
 ## Requiremients
-1. Neovim with python3 support, so [depoplete](https://github.com/Shougo/deoplete.nvim) and others can work properly
-  a. Install neovim with `pip3`, python3 package manager.
+1. python 3
+  a. brew install python3
+  b. Install neovim with `pip3`, python3 package manager. `pip3 install neovim`
 2. [the_silver_searcher](https://github.com/ggreer/the_silver_searcher), for quick search/find
 3. [Nerd forms][https://github.com/ryanoasis/nerd-fonts] to display icons in NerdTree (recomended font: dejavu sans mono for powerline nerd font)
 4. `brew install ripgrep` for faster CTRLP
