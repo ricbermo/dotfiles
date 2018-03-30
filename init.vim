@@ -31,6 +31,7 @@ call dein#add('ervandew/supertab')
 call dein#add('roxma/nvim-completion-manager')
 call dein#add('roxma/nvim-cm-tern', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx'], 'build': 'npm install'})
 call dein#add('ctrlpvim/ctrlp.vim')
+call dein#add('tacahiroy/ctrlp-funky')
 call dein#add('scrooloose/nerdtree')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
 call dein#add('christoomey/vim-tmux-runner')
@@ -66,10 +67,11 @@ call dein#add('HerringtonDarkholme/yats.vim')
 call dein#add('othree/html5.vim')
 call dein#add('itchyny/lightline.vim')
 call dein#add('taohex/lightline-buffer')
-call dein#add('Rykka/lastbuf.vim')
-call dein#add('morhetz/gruvbox') " theme
+call dein#add('gu-fan/lastbuf.vim')
 call dein#add('rakr/vim-one') " theme
 call dein#add('tpope/vim-repeat')
+call dein#add('vim-scripts/YankRing.vim') "vim yank history
+call dein#add('sjl/gundo.vim') "show undo history as a three
 
 call dein#end()
 
@@ -136,14 +138,21 @@ map <Leader>fnt :NERDTreeFind<CR>
 let NERDTreeShowLineNumbers=1
 
 " ctrlp config
-let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+let g:ctrlp_map = '<leader>f'
+let g:ctrlp_cmd = 'CtrlPMRUFiles'
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_dotfiles = 0
+let g:ctrlp_max_files = 0
+let g:ctrlp_max_depth = 40
+let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_use_caching = 0
+let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 let g:ctrlp_custom_ignore = {
 \ 'dir':  '\.git$\|public$|log\|tmp$\|node_modules$\|bower_components$\|hooks$\|plugins$\|platforms$\|_build$',
-\ 'file': '\.so$\|\.dat$|\.DS_Store$|\.lock$'
+\ 'file': '\.so$\|\.dat$|\.DS_Store$|\.lock$|\.snap$'
 \ }
 let g:ctrlp_funky_syntax_highlight = 1
-nnoremap <leader>f :CtrlPFunky<CR>
+nnoremap <leader>fu :CtrlPFunky<CR>
 
 " Theming
 let g:one_allow_italics = 1
@@ -308,6 +317,16 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+"show yank history
+nnoremap <silent> <F10> :YRShow<CR>
+let g:yankring_persist = 0
+let g:yankring_share_between_instances = 0
+let g:yankring_dot_repeat_yank = 1
+
+"gundo
+nnoremap <F5> :GundoToggle<CR>
+let g:gundo_prefer_python3 = 1
 
 let g:ascii = [
 \' ____  _                   _         ____               _       _',
