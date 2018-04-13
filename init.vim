@@ -10,8 +10,8 @@ endif
 set mouse=a
 set encoding=utf8
 
-if (has("termguicolors"))
- set termguicolors
+if has('nvim') || has('termguicolors')
+  set termguicolors
 endif
 
 let g:dein_repo = 'https://github.com/Shougo/dein.vim.git'
@@ -69,6 +69,7 @@ call dein#add('itchyny/lightline.vim')
 call dein#add('taohex/lightline-buffer')
 call dein#add('gu-fan/lastbuf.vim')
 call dein#add('rakr/vim-one') " theme
+call dein#add('challenger-deep-theme/vim') " theme
 call dein#add('tpope/vim-repeat')
 call dein#add('vim-scripts/YankRing.vim') "vim yank history
 call dein#add('sjl/gundo.vim') "show undo history as a three
@@ -86,7 +87,7 @@ set rnu
 set noerrorbells
 set novisualbell
 set expandtab
-set softtabstop=2
+set tabstop=2
 set shiftwidth=2
 let mapleader="\<Space>"
 set autowrite
@@ -139,8 +140,7 @@ let NERDTreeShowLineNumbers=1
 
 " ctrlp config
 let g:ctrlp_map = '<leader>f'
-let g:ctrlp_cmd = 'CtrlPMRUFiles'
-let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_max_files = 0
 let g:ctrlp_max_depth = 40
@@ -155,9 +155,8 @@ let g:ctrlp_funky_syntax_highlight = 1
 nnoremap <leader>fu :CtrlPFunky<CR>
 
 " Theming
-let g:one_allow_italics = 1
-colorscheme one
-set background=dark
+colorscheme challenger_deep
+
 
 " Trim whitespace on save: vim-better-whitespace
 autocmd BufWritePre * StripWhitespace
@@ -217,8 +216,9 @@ let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'startify']
 nmap <silent> <leader>ti :IndentLinesToggle<CR>
 
 "Lightline
+set noshowmode "hide edit mode
 let g:lightline = {
-\ 'colorscheme': 'one',
+\ 'colorscheme': 'challenger_deep',
 \ 'separator': { 'left': '', 'right': '' },
 \ 'active': {
 \   'left': [['mode', 'paste'], ['gitbranch', 'filename', 'modified']],
