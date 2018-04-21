@@ -35,7 +35,7 @@ call dein#add('tacahiroy/ctrlp-funky')
 call dein#add('scrooloose/nerdtree')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
 call dein#add('christoomey/vim-tmux-runner')
-call dein#add('tpope/vim-fugitive')
+call dein#add('lambdalisue/gina.vim') "git manager
 call dein#add('tpope/vim-commentary')
 call dein#add('w0rp/ale') " lint engine
 call dein#add('airblade/vim-gitgutter')
@@ -126,12 +126,12 @@ let g:test#preserve_screen = 1
 let g:test#runner_commands = ['Jest']
 
 "Git
-noremap <leader>gb :Gblame<CR>
-noremap <leader>gs :Gstatus<CR>
-noremap <leader>gd :Gdiff<CR>
-noremap <leader>gl :Glog<CR>
-noremap <leader>gc :Gcommit<CR>
-noremap <leader>gp :Git push<CR>
+noremap <leader>gb :Gina blame<CR>
+noremap <leader>gs :Gina status<CR>
+noremap <leader>gd :Gina diff<CR>
+noremap <leader>gl :Gina log<CR>
+noremap <leader>gc :Gina commit<CR>
+noremap <leader>gp :Gina push<CR>
 
 " NERDTree config
 map <Leader>b :NERDTreeToggle<CR>
@@ -247,7 +247,7 @@ let g:lightline = {
 \   'bufferafter': 'raw',
 \ },
 \ 'component_function': {
-\   'gitbranch': 'LightlineFugitive',
+\   'gitbranch': 'gina#component#repo#branch',
 \   'bufferinfo': 'lightline#buffer#bufferinfo',
 \ },
 \ }
@@ -307,6 +307,7 @@ let g:lightline_buffer_reservelen = 20
 nnoremap <Leader>[ :bprev<CR>
 nnoremap <Leader>] :bnext<CR>
 nnoremap <Leader>db :bd<CR>
+nnoremap <Leader>cb :bufdo bwipeout<CR>
 
 
 " reopen last closed buffer
