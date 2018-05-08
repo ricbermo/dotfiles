@@ -63,6 +63,7 @@ call dein#add('othree/jspc.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript
 call dein#add('othree/javascript-libraries-syntax.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('mxw/vim-jsx', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('HerringtonDarkholme/yats.vim')
+call dein#add('hotoo/jsgf.vim') "imporved gf for JS files
 
 call dein#add('othree/html5.vim')
 call dein#add('itchyny/lightline.vim')
@@ -110,6 +111,7 @@ set linebreak
 set nolist
 set completeopt=longest,menuone,preview
 set hid
+set autochdir "helper for hotoo/jsgf.vim
 
 "JS cofig
 let g:used_javascript_libs = 'underscore,react,lodash'
@@ -139,7 +141,7 @@ map <Leader>fnt :NERDTreeFind<CR>
 let NERDTreeShowLineNumbers=1
 
 " ctrlp config
-let g:ctrlp_map = '<leader>f'
+let g:ctrlp_map = '<leader>p'
 let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_max_files = 0
@@ -184,6 +186,9 @@ let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 " Bind F8 to fixing problems with ALE
 nmap <F8> <Plug>(ale_fix)
+" Jump to errors
+nmap <silent> <leader>ne <Plug>(ale_previous_wrap)
+nmap <silent> <leader>pe <Plug>(ale_next_wrap)
 
 " OSX stupid backspace fix
 set backspace=indent,eol,start
@@ -252,14 +257,6 @@ let g:lightline = {
 \ },
 \ }
 
-function! LightlineFugitive()
-  if exists('*fugitive#head')
-    let branch = fugitive#head()
-    return branch !=# '' ? ' '.branch : ''
-  endif
-  return ''
-endfunction
-
 function! LightlineLinterWarnings() abort
   let l:counts = ale#statusline#Count(bufnr(''))
   let l:all_errors = l:counts.error + l:counts.style_error
@@ -309,6 +306,9 @@ nnoremap <Leader>] :bnext<CR>
 nnoremap <Leader>db :bd<CR>
 nnoremap <Leader>cb :bufdo bwipeout<CR>
 
+"remove hightlights
+nnoremap <Leader>rh :noh<CR>
+
 
 " reopen last closed buffer
 let g:lastbuf_level=2 "since I'm closing buffers with db
@@ -320,14 +320,27 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 "show yank history
-nnoremap <silent> <F10> :YRShow<CR>
+noremap <leader>tyh :YRShow<CR>
 let g:yankring_persist = 0
 let g:yankring_share_between_instances = 0
 let g:yankring_dot_repeat_yank = 1
 
 "gundo
-nnoremap <F5> :GundoToggle<CR>
+noremap <leader>tu :GundoToggle<CR>
 let g:gundo_prefer_python3 = 1
+
+"multi cursor
+let g:multi_cursor_use_default_mapping=0
+
+" Default mapping
+let g:multi_cursor_start_word_key      = '<C-d>'
+let g:multi_cursor_select_all_word_key = '<leader><C-d>'
+let g:multi_cursor_next_key            = '<C-d>'
+let g:multi_cursor_prev_key            = '<C-p>'
+let g:multi_cursor_skip_key            = '<C-x>'
+let g:multi_cursor_quit_key            = '<Esc>'
+let g:multi_cursor_start_key           = 'g<C-n>'
+let g:multi_cursor_select_all_key      = 'g<A-n>'
 
 let g:ascii = [
 \' ____  _                   _         ____               _       _',
