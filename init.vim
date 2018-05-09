@@ -72,7 +72,6 @@ call dein#add('gu-fan/lastbuf.vim')
 call dein#add('rakr/vim-one') " theme
 call dein#add('challenger-deep-theme/vim') " theme
 call dein#add('tpope/vim-repeat')
-call dein#add('vim-scripts/YankRing.vim') "vim yank history
 call dein#add('sjl/gundo.vim') "show undo history as a three
 
 call dein#end()
@@ -141,7 +140,7 @@ map <Leader>fnt :NERDTreeFind<CR>
 let NERDTreeShowLineNumbers=1
 
 " ctrlp config
-let g:ctrlp_map = '<leader>p'
+" let g:ctrlp_map = '<leader>p'
 let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_max_files = 0
@@ -307,7 +306,8 @@ nnoremap <Leader>db :bd<CR>
 nnoremap <Leader>cb :bufdo bwipeout<CR>
 
 "remove hightlights
-nnoremap <Leader>rh :noh<CR>
+" nnoremap <Leader>rh :noh<CR>
+nnoremap <esc> <esc>:noh<return><esc>
 
 
 " reopen last closed buffer
@@ -319,28 +319,18 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-"show yank history
-noremap <leader>tyh :YRShow<CR>
-let g:yankring_persist = 0
-let g:yankring_share_between_instances = 0
-let g:yankring_dot_repeat_yank = 1
-
 "gundo
 noremap <leader>tu :GundoToggle<CR>
 let g:gundo_prefer_python3 = 1
 
-"multi cursor
-let g:multi_cursor_use_default_mapping=0
-
-" Default mapping
-let g:multi_cursor_start_word_key      = '<C-d>'
-let g:multi_cursor_select_all_word_key = '<leader><C-d>'
-let g:multi_cursor_next_key            = '<C-d>'
+"multicursors
+let g:multi_cursor_use_default_mapping = 0
+let g:multi_cursor_start_word_key      = '<C-n>'
+let g:multi_cursor_select_all_word_key = '<leader>n'
+let g:multi_cursor_next_key            = '<C-n>'
 let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
-let g:multi_cursor_start_key           = 'g<C-n>'
-let g:multi_cursor_select_all_key      = 'g<A-n>'
 
 let g:ascii = [
 \' ____  _                   _         ____               _       _',
