@@ -63,15 +63,13 @@ call dein#add('othree/jspc.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript
 call dein#add('othree/javascript-libraries-syntax.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('mxw/vim-jsx', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('HerringtonDarkholme/yats.vim')
-call dein#add('hotoo/jsgf.vim') "imporved gf for JS files
 
 call dein#add('othree/html5.vim')
 call dein#add('itchyny/lightline.vim')
-call dein#add('taohex/lightline-buffer')
+call dein#add('taohexxx/lightline-buffer')
 call dein#add('gu-fan/lastbuf.vim')
 call dein#add('rakr/vim-one') " theme
 call dein#add('challenger-deep-theme/vim') " theme
-call dein#add('tpope/vim-repeat')
 call dein#add('sjl/gundo.vim') "show undo history as a three
 
 call dein#end()
@@ -110,7 +108,6 @@ set linebreak
 set nolist
 set completeopt=longest,menuone,preview
 set hid
-set autochdir "helper for hotoo/jsgf.vim
 
 "JS cofig
 let g:used_javascript_libs = 'underscore,react,lodash'
@@ -186,8 +183,8 @@ let g:ale_lint_on_enter = 0
 " Bind F8 to fixing problems with ALE
 nmap <F8> <Plug>(ale_fix)
 " Jump to errors
-nmap <silent> <leader>ne <Plug>(ale_previous_wrap)
-nmap <silent> <leader>pe <Plug>(ale_next_wrap)
+nmap <silent> <leader>pe <Plug>(ale_previous_wrap)
+nmap <silent> <leader>ne <Plug>(ale_next_wrap)
 
 " OSX stupid backspace fix
 set backspace=indent,eol,start
@@ -299,6 +296,7 @@ let g:lightline_buffer_maxfextlen = 3
 let g:lightline_buffer_minflen = 16
 let g:lightline_buffer_minfextlen = 3
 let g:lightline_buffer_reservelen = 20
+let g:lightline_buffer_enable_devicons = 1
 
 nnoremap <Leader>[ :bprev<CR>
 nnoremap <Leader>] :bnext<CR>
