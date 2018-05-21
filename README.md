@@ -3,7 +3,11 @@
 ## Requiremients
 1. python 3
   a. brew install python3
-  b. Install neovim with `pip3`, python3 package manager. `pip3 install neovim`
+  b. install neovim with `pip3`, python3 package manager. `pip3 install neovim`
+  c. neovim node package: `npm install -g neovim`
+  d. neovim ruby gem: `gem install neovim`
+  e. run `pip3 install --user --upgrade neovim` to upgrade py3 neovim.
+  f. install py2 neovim `pip2 install --user --upgrade neovim`
 2. [the_silver_searcher](https://github.com/ggreer/the_silver_searcher), for quick search/find
 3. [Nerd forms][https://github.com/ryanoasis/nerd-fonts] to display icons in NerdTree (recomended font: dejavu sans mono for powerline nerd font)
 4. `brew install ripgrep` for faster CTRLP
