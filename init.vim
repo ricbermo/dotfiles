@@ -305,7 +305,7 @@ nnoremap <Leader>cb :bufdo bwipeout<CR>
 
 "remove hightlights
 " nnoremap <Leader>rh :noh<CR>
-nnoremap <esc> <esc>:noh<return><esc>
+nnoremap <silent> <esc> <esc>:noh<return><esc>
 
 
 " reopen last closed buffer
