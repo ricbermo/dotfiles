@@ -150,7 +150,7 @@ let g:ctrlp_custom_ignore = {
 \ 'file': '\.so$\|\.dat$|\.DS_Store$|\.lock$|\.snap$'
 \ }
 let g:ctrlp_funky_syntax_highlight = 1
-nnoremap <leader>fu :CtrlPFunky<CR>
+nnoremap <leader>lf :CtrlPFunky<CR>
 
 " Theming
 colorscheme challenger_deep
