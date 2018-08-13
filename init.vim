@@ -154,6 +154,8 @@ nnoremap <leader>lf :CtrlPFunky<CR>
 
 " Theming
 colorscheme challenger_deep
+set cursorline
+hi CursorLine  cterm=NONE ctermbg=darkred ctermfg=white guibg=#F57C00 guifg=white
 
 
 " Trim whitespace on save: vim-better-whitespace
