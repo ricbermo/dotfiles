@@ -91,7 +91,7 @@ alias rrs="react-native start"
 alias rnl="react-native link"
 alias tt="npm test"
 
-export HOMEBREW_GITHUB_API_TOKEN="bbbf49b5ede031f5e9c44b797b4a0a5f51ffc338"
+export HOMEBREW_GITHUB_API_TOKEN=""
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
