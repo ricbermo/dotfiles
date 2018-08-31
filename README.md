@@ -34,3 +34,5 @@
 
 ### Finally
 1. Get a OAuth github token for HomeBrew
+2. `brew cask install font-firacode-nerd-font font-firacode-nerd-font-mono`
+3. `brew cask install font-dejavusansmono-nerd-font font-dejavusansmono-nerd-font-mono font-dejavu-sans-mono-for-powerline`
