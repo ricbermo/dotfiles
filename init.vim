@@ -28,8 +28,15 @@ call dein#begin(expand('~/.config/nvim/dein'))
 call dein#add('Shougo/dein.vim')
 call dein#add('haya14busa/dein-command.vim')
 call dein#add('ervandew/supertab')
-call dein#add('roxma/nvim-completion-manager')
-call dein#add('roxma/nvim-cm-tern', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx'], 'build': 'npm install'})
+call dein#add('roxma/nvim-yarp') "just a requirement for ncm2
+call dein#add('ncm2/ncm2')
+"NCM2 pluggins
+call dein#add('ncm2/ncm2-bufword')
+call dein#add('ncm2/ncm2-tmux')
+call dein#add('ncm2/ncm2-cssomni')
+call dein#add('ncm2/ncm2-tern', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx'], 'build': 'npm install'})
+call dein#add('ncm2/ncm2-ultisnips')
+
 call dein#add('ctrlpvim/ctrlp.vim')
 call dein#add('tacahiroy/ctrlp-funky')
 call dein#add('scrooloose/nerdtree')
@@ -71,6 +78,7 @@ call dein#add('gu-fan/lastbuf.vim')
 call dein#add('rakr/vim-one') " theme
 call dein#add('challenger-deep-theme/vim') " theme
 call dein#add('sjl/gundo.vim') "show undo history as a three
+call dein#add('ap/vim-css-color')
 
 call dein#end()
 
@@ -106,7 +114,7 @@ set noswapfile
 set wrap
 set linebreak
 set nolist
-set completeopt=longest,menuone,preview
+set completeopt=noinsert,menuone,noselect
 set hid
 
 "JS cofig
@@ -137,7 +145,6 @@ map <Leader>fnt :NERDTreeFind<CR>
 let NERDTreeShowLineNumbers=1
 
 " ctrlp config
-" let g:ctrlp_map = '<leader>p'
 let g:ctrlp_clear_cache_on_exit = 1
 let g:ctrlp_dotfiles = 0
 let g:ctrlp_max_files = 0
@@ -172,7 +179,7 @@ let g:esearch = {
 \ 'use':        ['word_under_cursor', 'hlsearch', 'clipboard'],
 \}
 
-" enable supertab <tab> for everything but ultisnippets
+" enable supertab <tab> for everything but snippets
 let g:SuperTabClosePreviewOnPopupClose = 1
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 let g:UltiSnipsExpandTrigger="<C-j>"
@@ -308,9 +315,10 @@ nnoremap <Leader>db :bd<CR>
 nnoremap <Leader>cb :bufdo bwipeout<CR>
 
 "remove hightlights
-" nnoremap <Leader>rh :noh<CR>
 nnoremap <silent> <esc> <esc>:noh<return><esc>
 
+"NCM2
+autocmd BufEnter * call ncm2#enable_for_buffer()
 
 " reopen last closed buffer
 let g:lastbuf_level=2 "since I'm closing buffers with db

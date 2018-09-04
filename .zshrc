@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/fsl/.oh-my-zsh
+export ZSH=/Users/ricbermo/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -90,6 +90,9 @@ alias rri="react-native run-ios"
 alias rrs="react-native start"
 alias rnl="react-native link"
 alias tt="npm test"
+alias getip="ifconfig en0 | awk '$1 == "inet" {print $2}'"
+alias tst="tmux new -s"
+alias tatt="tmux attach -t"
 
 export HOMEBREW_GITHUB_API_TOKEN=""
 
@@ -131,7 +134,7 @@ export REACT_EDITOR=nvim
 export PATH="$PATH:$HOME/.rvm/bin"
 
 ###-tns-completion-start-###
-if [ -f /Users/fsl/.tnsrc ]; then
-    source /Users/fsl/.tnsrc
+if [ -f /Users/ricbermo/.tnsrc ]; then
+    source /Users/ricbermo/.tnsrc
 fi
 ###-tns-completion-end-###
