@@ -1,7 +1,6 @@
 " Ricardo Berdejo's nvim config file
 " Use this for global / shared configs and use
-" embear/vim-localvimrc to load local configs
-"
+" Don't forget to copy the after folder in ~/.config/nvim/ to add more goodies.
 " Enjoy
 
 if &compatible
@@ -37,8 +36,8 @@ call dein#add('ncm2/ncm2-cssomni')
 call dein#add('ncm2/ncm2-tern', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx'], 'build': 'npm install'})
 call dein#add('ncm2/ncm2-ultisnips')
 
-call dein#add('ctrlpvim/ctrlp.vim')
-call dein#add('tacahiroy/ctrlp-funky')
+call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
+call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 call dein#add('scrooloose/nerdtree')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
 call dein#add('christoomey/vim-tmux-runner')
@@ -49,7 +48,6 @@ call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-surround')
 call dein#add('mattn/emmet-vim')
 call dein#add('ntpeters/vim-better-whitespace')
-call dein#add('eugen0329/vim-esearch')
 call dein#add('roxma/vim-tmux-clipboard')
 call dein#add('tpope/vim-obsession')
 call dein#add('SirVer/ultisnips')
@@ -57,7 +55,6 @@ call dein#add('honza/vim-snippets')
 call dein#add('vim-scripts/BufOnly.vim') " delete all buffers but the current
 call dein#add('ryanoasis/vim-devicons')
 call dein#add('janko-m/vim-test')
-call dein#add('embear/vim-localvimrc')
 call dein#add('mhinz/vim-startify')
 call dein#add('Yggdroot/indentLine')
 call dein#add('terryma/vim-multiple-cursors')
@@ -65,7 +62,6 @@ call dein#add('jiangmiao/auto-pairs')
 call dein#add('luochen1990/rainbow')
 "javascript config
 call dein#add('pangloss/vim-javascript', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
-call dein#add('ternjs/tern_for_vim', {'lazy': 1, 'build': 'npm install -g tern', 'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('othree/jspc.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('othree/javascript-libraries-syntax.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('mxw/vim-jsx', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
@@ -79,6 +75,10 @@ call dein#add('rakr/vim-one') " theme
 call dein#add('challenger-deep-theme/vim') " theme
 call dein#add('sjl/gundo.vim') "show undo history as a three
 call dein#add('ap/vim-css-color')
+
+"Dart/Flutter
+call dein#add('dart-lang/dart-vim-plugin', {'on_ft': ['dart']})
+call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': './install.sh'})
 
 call dein#end()
 
@@ -144,21 +144,6 @@ map <Leader>b :NERDTreeToggle<CR>
 map <Leader>fnt :NERDTreeFind<CR>
 let NERDTreeShowLineNumbers=1
 
-" ctrlp config
-let g:ctrlp_clear_cache_on_exit = 1
-let g:ctrlp_dotfiles = 0
-let g:ctrlp_max_files = 0
-let g:ctrlp_max_depth = 40
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_use_caching = 0
-let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-let g:ctrlp_custom_ignore = {
-\ 'dir':  '\.git$\|public$|log\|tmp$\|node_modules$\|bower_components$\|hooks$\|plugins$\|platforms$\|_build$',
-\ 'file': '\.so$\|\.dat$|\.DS_Store$|\.lock$|\.snap$'
-\ }
-let g:ctrlp_funky_syntax_highlight = 1
-nnoremap <leader>lf :CtrlPFunky<CR>
-
 " Theming
 colorscheme challenger_deep
 hi CursorLine  cterm=NONE ctermbg=darkred ctermfg=white guibg=#263238 guifg=NONE
@@ -166,18 +151,26 @@ set cursorline
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=#9E9E9E guibg=NONE
 hi CursorLineNr guifg=#F4511E
 
+"FZF Settings
+imap <c-x><c-l> <plug>(fzf-complete-line)
+" supercharge FZF
+" https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
+command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
+
+let g:fzf_action = {
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-v': 'vsplit'
+      \ }
+nnoremap <c-p> :FZF<cr>
+augroup fzf
+  autocmd!
+  autocmd! FileType fzf
+  autocmd  FileType fzf set laststatus=0 noshowmode noruler
+    \| autocmd BufLeave <buffer> set laststatus=2 showmode ruler
+augroup END
 
 " Trim whitespace on save: vim-better-whitespace
 autocmd BufWritePre * StripWhitespace
-
-" esearch config
-let g:esearch = {
-\ 'adapter':    'ag',
-\ 'backend':    'nvim',
-\ 'out':        'win',
-\ 'batch_size': 1000,
-\ 'use':        ['word_under_cursor', 'hlsearch', 'clipboard'],
-\}
 
 " enable supertab <tab> for everything but snippets
 let g:SuperTabClosePreviewOnPopupClose = 1
@@ -186,7 +179,8 @@ let g:UltiSnipsExpandTrigger="<C-j>"
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " ale config
-let g:ale_linters = { 'javascript': ['eslint'] }
+ let g:ale_linters = { 'javascript': ['eslint'] }
+
 let g:ale_sign_column_always = 1
 " lint only on save
 let g:ale_lint_on_text_changed = 'never'
@@ -212,6 +206,12 @@ let g:ultisnips_javascript = {
 \ 'semi': 'never',
 \ 'space-before-function-paren': 'always',
 \ }
+
+" LanguageClient
+let g:LanguageClient_serverCommands = {'dart': ['dart_language_server']}
+nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " nerdtree + startify
 autocmd VimEnter *
@@ -341,6 +341,14 @@ let g:multi_cursor_next_key            = '<C-n>'
 let g:multi_cursor_prev_key            = '<C-p>'
 let g:multi_cursor_skip_key            = '<C-x>'
 let g:multi_cursor_quit_key            = '<Esc>'
+
+" Vim-Test Mappings
+nmap <silent> <leader>s :TestNearest<CR>
+nmap <silent> <leader>t :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
+
+" toggle css colors
+nnoremap <silent><leader>tc :call css_color#toggle()<CR>
 
 let g:ascii = [
 \' ____  _                   _         ____               _       _',

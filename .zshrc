@@ -81,6 +81,13 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
+# --files: List files that would be searched but do not search
+# --no-ignore: Do not respect .gitignore, etc...
+# --hidden: Search hidden files and folders
+# --follow: Follow symlinks
+# --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
 alias zshconfig="nvim ~/.zshrc"
 alias ohmyzsh="nvim ~/.oh-my-zsh"
 alias nv="nvim"
@@ -90,11 +97,26 @@ alias rri="react-native run-ios"
 alias rrs="react-native start"
 alias rnl="react-native link"
 alias tt="npm test"
+alias e2e="npm run test:e2e"
 alias getip="ifconfig en0 | awk '$1 == "inet" {print $2}'"
-alias tst="tmux new -s"
-alias tatt="tmux attach -t"
+alias tmn="tmux new -s"
+alias tat="tmux attach -t"
+alias cdev="cd ~/development && tmux new -s dev"
 
 export HOMEBREW_GITHUB_API_TOKEN=""
+
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH=$HOME/.fluter-dev/flutter/bin:$PATH
+export PATH="$PATH":"$HOME/.pub-cache/bin"
+export REACT_EDITOR=nvim
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -122,19 +144,4 @@ load-nvmrc() {
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
-export ANDROID_HOME=$HOME/Library/Android/sdk
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export REACT_EDITOR=nvim
-# export PATH="$HOME/.rbenv/bin:$PATH"
-# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
-###-tns-completion-start-###
-if [ -f /Users/ricbermo/.tnsrc ]; then
-    source /Users/ricbermo/.tnsrc
-fi
-###-tns-completion-end-###
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

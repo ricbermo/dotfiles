@@ -19,6 +19,10 @@
 2. `npm install -g tern` for Javascript development
 
 
+### for Dart developement
+1.  [dart_language_server](https://github.com/natebosch/dart_language_server)
+
+
 ### to use this on a mac
 1. `brew install reattach-to-user-namespace`
 
@@ -26,11 +30,13 @@
 1. [plugin manager](https://github.com/tmux-plugins/tpm)
 
 ### Create symbolic links
-`Create the folders if they don't exist`
+`Create the folders (~/.config/nvim) if they don't exist`
 
 1. `ln -s ~/development/dotfiles/init.vim ~/.config/nvim/init.vim`
-2. `ln -s ~/development/dotfiles/.tmux.conf ~/.tmux.conf`
-3. `ln -s ~/development/dotfiles/.zshrc ~/.zshrc`
+2. `ln -s ~/development/dotfiles/after/ ~/.config/nvim/`
+3. `ln -s ~/development/dotfiles/.tmux.conf ~/.tmux.conf`
+4. `ln -s ~/development/dotfiles/.zshrc ~/.zshrc`
+
 
 ### Finally
 1. Get a OAuth github token for HomeBrew
