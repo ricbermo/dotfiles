@@ -194,10 +194,6 @@ nmap <silent> <leader>ne <Plug>(ale_next_wrap)
 " OSX stupid backspace fix
 set backspace=indent,eol,start
 
-" load local configuraction files
-let g:localvimrc_file_directory_only=1 " load only from current dir
-let g:localvimrc_persistent=1 " save only the load answers if Y/N uppercase
-
 " change colors for matching parenthesis
 let g:rainbow_active = 1
 
