@@ -102,6 +102,7 @@ alias getip="ifconfig en0 | awk '$1 == "inet" {print $2}'"
 alias tmn="tmux new -s"
 alias tat="tmux attach -t"
 alias cdev="cd ~/development && tmux new -s dev"
+alias cio="rm -rf ios/build; rm -rf node_modules; yarn cache clean; yarn"
 
 export HOMEBREW_GITHUB_API_TOKEN=""
 
@@ -111,6 +112,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH=$HOME/.fluter-dev/flutter/bin:$PATH
 export PATH="$PATH":"$HOME/.pub-cache/bin"
+export PATH="$HOME/.fastlane/bin:$PATH"
 export REACT_EDITOR=nvim
 # export PATH="$HOME/.rbenv/bin:$PATH"
 # if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

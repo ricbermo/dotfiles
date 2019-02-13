@@ -185,7 +185,7 @@ let g:ale_sign_column_always = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
 " Bind F8 to fixing problems with ALE
-nmap <F8> <Plug>(ale_fix)
+nmap <silent> <leader>fp <Plug>(ale_fix)
 " Jump to errors
 nmap <silent> <leader>pe <Plug>(ale_previous_wrap)
 nmap <silent> <leader>ne <Plug>(ale_next_wrap)
