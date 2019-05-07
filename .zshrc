@@ -105,6 +105,7 @@ alias cdev="cd ~/development && tmux new -s dev"
 alias cio="rm -rf ios/build; rm -rf node_modules; yarn cache clean; yarn"
 alias cpi="npm run codepush-ios-staging"
 alias cpa="npm run codepush-android-staging"
+alias du="docker-compose up"
 
 export HOMEBREW_GITHUB_API_TOKEN=""
 
