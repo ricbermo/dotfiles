@@ -59,7 +59,6 @@ call dein#add('mhinz/vim-startify')
 call dein#add('Yggdroot/indentLine')
 call dein#add('terryma/vim-multiple-cursors')
 call dein#add('jiangmiao/auto-pairs')
-call dein#add('luochen1990/rainbow')
 "javascript config
 call dein#add('pangloss/vim-javascript', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('othree/jspc.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
@@ -71,9 +70,12 @@ call dein#add('othree/html5.vim')
 call dein#add('itchyny/lightline.vim')
 call dein#add('taohexxx/lightline-buffer')
 call dein#add('gu-fan/lastbuf.vim')
-call dein#add('rakr/vim-one') " theme
-call dein#add('challenger-deep-theme/vim') " theme
 call dein#add('sjl/gundo.vim') "show undo history as a three
+
+" Theming
+" call dein#add('rakr/vim-one')
+call dein#add('challenger-deep-theme/vim')
+call dein#add('luochen1990/rainbow')
 call dein#add('ap/vim-css-color')
 
 "Dart/Flutter

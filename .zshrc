@@ -106,6 +106,8 @@ alias cio="rm -rf ios/build; rm -rf node_modules; yarn cache clean; yarn"
 alias cpi="npm run codepush-ios-staging"
 alias cpa="npm run codepush-android-staging"
 alias du="docker-compose up"
+alias ss="npm run start-server"
+alias cnm="rm -rf node_modules && yarn"
 
 export HOMEBREW_GITHUB_API_TOKEN=""
 
@@ -117,12 +119,6 @@ export PATH=$HOME/.fluter-dev/flutter/bin:$PATH
 export PATH="$PATH":"$HOME/.pub-cache/bin"
 export PATH="$HOME/.fastlane/bin:$PATH"
 export REACT_EDITOR=nvim
-# export PATH="$HOME/.rbenv/bin:$PATH"
-# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
