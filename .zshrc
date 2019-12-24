@@ -108,8 +108,11 @@ alias cpa="npm run codepush-android-staging"
 alias du="docker-compose up"
 alias ss="npm run start-server"
 alias cnm="rm -rf node_modules && yarn"
+alias bla="./gradlew clean && ./gradlew assembleRelease"
 
 export HOMEBREW_GITHUB_API_TOKEN=""
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/tools
@@ -146,3 +149,6 @@ add-zsh-hook chpwd load-nvmrc
 load-nvmrc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
