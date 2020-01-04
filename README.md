@@ -33,9 +33,10 @@
 `Create the folders (~/.config/nvim) if they don't exist`
 
 1. `ln -s ~/development/dotfiles/init.vim ~/.config/nvim/init.vim`
-2. `ln -s ~/development/dotfiles/after/ ~/.config/nvim/`
-3. `ln -s ~/development/dotfiles/.tmux.conf ~/.tmux.conf`
-4. `ln -s ~/development/dotfiles/.zshrc ~/.zshrc`
+2. `ln -s ~/development/dotfiles/.tmux.conf ~/.tmux.conf`
+3. `ln -s ~/development/dotfiles/.zshrc ~/.zshrc`
+#### Optional: This command will copy some language-specific plugins/configs
+4. `ln -s ~/development/dotfiles/after/ ~/.config/nvim/`
 
 
 ### Finally
