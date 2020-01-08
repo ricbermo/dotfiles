@@ -26,31 +26,20 @@ call dein#begin(expand('~/.config/nvim/dein'))
 
 call dein#add('Shougo/dein.vim')
 call dein#add('haya14busa/dein-command.vim')
-call dein#add('ervandew/supertab')
-call dein#add('roxma/nvim-yarp') "just a requirement for ncm2
-call dein#add('ncm2/ncm2')
-"NCM2 pluggins
-call dein#add('ncm2/ncm2-bufword')
-call dein#add('ncm2/ncm2-tmux')
-call dein#add('ncm2/ncm2-cssomni')
-call dein#add('ncm2/ncm2-tern', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx'], 'build': 'npm install'})
-call dein#add('ncm2/ncm2-ultisnips')
+call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
 
 call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 call dein#add('scrooloose/nerdtree')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
-call dein#add('christoomey/vim-tmux-runner')
 call dein#add('lambdalisue/gina.vim') "git manager
 call dein#add('tpope/vim-commentary')
 call dein#add('w0rp/ale') " lint engine
-call dein#add('airblade/vim-gitgutter')
 call dein#add('tpope/vim-surround')
 call dein#add('mattn/emmet-vim')
 call dein#add('ntpeters/vim-better-whitespace')
 call dein#add('roxma/vim-tmux-clipboard')
 call dein#add('tpope/vim-obsession')
-call dein#add('SirVer/ultisnips')
 call dein#add('honza/vim-snippets')
 call dein#add('vim-scripts/BufOnly.vim') " delete all buffers but the current
 call dein#add('ryanoasis/vim-devicons')
@@ -63,24 +52,22 @@ call dein#add('jiangmiao/auto-pairs')
 call dein#add('pangloss/vim-javascript', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('othree/jspc.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('othree/javascript-libraries-syntax.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
-call dein#add('mxw/vim-jsx', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
+call dein#add('maxmellon/vim-jsx-pretty', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
 call dein#add('HerringtonDarkholme/yats.vim')
 
 call dein#add('othree/html5.vim')
 call dein#add('itchyny/lightline.vim')
 call dein#add('taohexxx/lightline-buffer')
 call dein#add('gu-fan/lastbuf.vim')
-call dein#add('sjl/gundo.vim') "show undo history as a three
 
 " Theming
-" call dein#add('rakr/vim-one')
+call dein#add('rakr/vim-one')
 call dein#add('challenger-deep-theme/vim')
 call dein#add('luochen1990/rainbow')
 call dein#add('ap/vim-css-color')
 
 "Dart/Flutter
 call dein#add('dart-lang/dart-vim-plugin', {'on_ft': ['dart']})
-call dein#add('autozimu/LanguageClient-neovim', {'rev': 'next', 'build': './install.sh'})
 
 call dein#end()
 
@@ -118,15 +105,21 @@ set linebreak
 set nolist
 set completeopt=noinsert,menuone,noselect
 set hid
+set cmdheight=2 " Better display for messages
+set updatetime=300
+set shortmess+=c " don't give |ins-completion-menu| messages.
+set signcolumn=yes " always show signcolumns
+
+"Get correct comment highlighting
+autocmd FileType json syntax match Comment +\/\/.\+$+
 
 "JS cofig
 let g:used_javascript_libs = 'underscore,react,lodash'
+let g:vim_jsx_pretty_colorful_config = 1
 "ternjs config
 let g:tern_request_timeout = 6000
 let g:tern#command = ["tern"]
 let g:tern#arguments = ["--persistent"]
-"JSX support
-let g:jsx_ext_required = 0
 
 "Testing helpers
 let test#strategy = "vtr"
@@ -135,11 +128,9 @@ let g:test#runner_commands = ['Jest']
 
 "Git
 noremap <leader>gb :Gina blame<CR>
-noremap <leader>gs :Gina status<CR>
+noremap <leader>gst :Gina status<CR>
 noremap <leader>gd :Gina diff<CR>
-noremap <leader>gl :Gina log<CR>
-noremap <leader>gc :Gina commit<CR>
-noremap <leader>gp :Gina push<CR>
+noremap <leader>glo :Gina log<CR>
 
 " NERDTree config
 map <Leader>b :NERDTreeToggle<CR>
@@ -173,22 +164,12 @@ augroup END
 " Trim whitespace on save: vim-better-whitespace
 autocmd BufWritePre * StripWhitespace
 
-" enable supertab <tab> for everything but snippets
-let g:SuperTabClosePreviewOnPopupClose = 1
-let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
-let g:UltiSnipsExpandTrigger="<C-j>"
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
-" ale config
- let g:ale_linters = { 'javascript': ['eslint'] }
-
+"ALE config
+let g:ale_linters = { 'javascript': ['eslint'] }
 let g:ale_sign_column_always = 1
-" lint only on save
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
-" Bind F8 to fixing problems with ALE
 nmap <silent> <leader>fp <Plug>(ale_fix)
-" Jump to errors
 nmap <silent> <leader>pe <Plug>(ale_previous_wrap)
 nmap <silent> <leader>ne <Plug>(ale_next_wrap)
 
@@ -203,12 +184,6 @@ let g:ultisnips_javascript = {
 \ 'semi': 'never',
 \ 'space-before-function-paren': 'always',
 \ }
-
-" LanguageClient
-let g:LanguageClient_serverCommands = {'dart': ['dart_language_server']}
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
-nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
 
 " nerdtree + startify
 autocmd VimEnter *
@@ -314,9 +289,6 @@ nnoremap <Leader>cb :bufdo bwipeout<CR>
 "remove hightlights
 nnoremap <silent> <esc> <esc>:noh<return><esc>
 
-"NCM2
-autocmd BufEnter * call ncm2#enable_for_buffer()
-
 " reopen last closed buffer
 let g:lastbuf_level=2 "since I'm closing buffers with db
 
@@ -325,10 +297,6 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-"gundo
-noremap <leader>tu :GundoToggle<CR>
-let g:gundo_prefer_python3 = 1
 
 "multicursors
 let g:multi_cursor_use_default_mapping = 0
@@ -346,6 +314,50 @@ nmap <silent> <leader>a :TestSuite<CR>
 
 " toggle css colors
 nnoremap <silent><leader>tc :call css_color#toggle()<CR>
+
+"COC Config
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" Use <c-space> to trigger completion.
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" Use <cr> to confirm completion, `<C-g>u` means break undo chain at current position.
+" Coc only does snippet and additional edit on confirm.
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" Use `[g` and `]g` to navigate diagnostics
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Remap keys for gotos
+nmap <silent>gd <Plug>(coc-definition)
+nmap <silent>gy <Plug>(coc-type-definition)
+nmap <silent>gi <Plug>(coc-implementation)
+nmap <silent>gr <Plug>(coc-references)
+
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Remap for rename current word
+nmap <leader>rn <Plug>(coc-rename)
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
 
 let g:ascii = [
 \' ____  _                   _         ____               _       _',

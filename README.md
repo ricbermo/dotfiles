@@ -35,8 +35,16 @@
 1. `ln -s ~/development/dotfiles/init.vim ~/.config/nvim/init.vim`
 2. `ln -s ~/development/dotfiles/.tmux.conf ~/.tmux.conf`
 3. `ln -s ~/development/dotfiles/.zshrc ~/.zshrc`
-#### Optional: This command will copy some language-specific plugins/configs
 4. `ln -s ~/development/dotfiles/after/ ~/.config/nvim/`
+5. `ln -s ~/development/dotfiles/coc-settings.json ~/.config/nvim/coc-settings.json`
+
+
+### Install the COC extensions
+- [Snippets](https://github.com/neoclide/coc-snippets)
+- [Flutter](https://github.com/iamcco/coc-flutter)
+- [Git](https://github.com/neoclide/coc-git)
+- HTML, JS, CSSand JSON `:CocInstall coc-tsserver coc-json coc-html coc-css`
+
 
 
 ### Finally
