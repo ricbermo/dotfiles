@@ -109,6 +109,7 @@ alias du="docker-compose up"
 alias ss="npm run start-server"
 alias cnm="rm -rf node_modules && yarn"
 alias bla="./gradlew clean && ./gradlew assembleRelease"
+alias oni2='/Applications/Onivim2.app/Contents/MacOS/Oni2'
 
 export HOMEBREW_GITHUB_API_TOKEN=""
 export LC_ALL=en_US.UTF-8
