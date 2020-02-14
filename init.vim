@@ -34,7 +34,7 @@ call dein#add('scrooloose/nerdtree')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
 call dein#add('lambdalisue/gina.vim') "git manager
 call dein#add('tpope/vim-commentary')
-call dein#add('w0rp/ale') " lint engine
+call dein#add('dense-analysis/ale') " lint engine
 call dein#add('tpope/vim-surround')
 call dein#add('mattn/emmet-vim')
 call dein#add('ntpeters/vim-better-whitespace')
@@ -49,10 +49,10 @@ call dein#add('Yggdroot/indentLine')
 call dein#add('terryma/vim-multiple-cursors')
 call dein#add('jiangmiao/auto-pairs')
 "javascript config
-call dein#add('pangloss/vim-javascript', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
-call dein#add('othree/jspc.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
-call dein#add('othree/javascript-libraries-syntax.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
-call dein#add('maxmellon/vim-jsx-pretty', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx']})
+call dein#add('pangloss/vim-javascript', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx', 'javascriptreact']})
+call dein#add('othree/jspc.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx', 'javascriptreact']})
+call dein#add('othree/javascript-libraries-syntax.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx', 'javascriptreact']})
+call dein#add('maxmellon/vim-jsx-pretty', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx', 'javascriptreact']})
 call dein#add('HerringtonDarkholme/yats.vim')
 
 call dein#add('othree/html5.vim')
