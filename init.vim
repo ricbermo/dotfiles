@@ -30,6 +30,7 @@ call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
 
 call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+call dein#add('eugen0329/vim-esearch')
 call dein#add('scrooloose/nerdtree')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
 call dein#add('lambdalisue/gina.vim') "git manager
@@ -46,7 +47,7 @@ call dein#add('ryanoasis/vim-devicons')
 call dein#add('janko-m/vim-test')
 call dein#add('mhinz/vim-startify')
 call dein#add('Yggdroot/indentLine')
-call dein#add('terryma/vim-multiple-cursors')
+" call dein#add('terryma/vim-multiple-cursors')
 call dein#add('jiangmiao/auto-pairs')
 "javascript config
 call dein#add('pangloss/vim-javascript', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx', 'javascriptreact']})
@@ -126,12 +127,6 @@ let test#strategy = "vtr"
 let g:test#preserve_screen = 1
 let g:test#runner_commands = ['Jest']
 
-"Git
-noremap <leader>gb :Gina blame<CR>
-noremap <leader>gst :Gina status<CR>
-noremap <leader>gd :Gina diff<CR>
-noremap <leader>glo :Gina log<CR>
-
 " NERDTree config
 map <Leader>b :NERDTreeToggle<CR>
 map <Leader>fnt :NERDTreeFind<CR>
@@ -145,11 +140,11 @@ highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE gui
 hi CursorLineNr guifg=#F4511E
 
 "FZF Settings
-imap <c-x><c-f> <plug>(fzf-complete-path)
-imap <c-x><c-j> <plug>(fzf-complete-file-ag)
-imap <c-x><c-l> <plug>(fzf-complete-line)
-" supercharge FZF
-" https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
+" imap <c-x><c-f> <plug>(fzf-complete-path)
+" imap <c-x><c-j> <plug>(fzf-complete-file)
+" imap <c-x><c-l> <plug>(fzf-complete-line)
+" " supercharge FZF
+" " https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
 command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
 nnoremap <c-p> :FZF<cr>
@@ -298,14 +293,14 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-"multicursors
-let g:multi_cursor_use_default_mapping = 0
-let g:multi_cursor_start_word_key      = '<C-n>'
-let g:multi_cursor_select_all_word_key = '<leader>n'
-let g:multi_cursor_next_key            = '<C-n>'
-let g:multi_cursor_prev_key            = '<C-p>'
-let g:multi_cursor_skip_key            = '<C-x>'
-let g:multi_cursor_quit_key            = '<Esc>'
+""multicursors
+"let g:multi_cursor_use_default_mapping = 0
+"let g:multi_cursor_start_word_key      = '<C-n>'
+"let g:multi_cursor_select_all_word_key = '<leader>n'
+"let g:multi_cursor_next_key            = '<C-n>'
+"let g:multi_cursor_prev_key            = '<C-p>'
+"let g:multi_cursor_skip_key            = '<C-x>'
+"let g:multi_cursor_quit_key            = '<Esc>'
 
 " Vim-Test Mappings
 nmap <silent> <leader>s :TestNearest<CR>
