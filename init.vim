@@ -40,6 +40,7 @@ call dein#add('tpope/vim-surround')
 call dein#add('mattn/emmet-vim')
 call dein#add('ntpeters/vim-better-whitespace')
 call dein#add('roxma/vim-tmux-clipboard')
+call dein#add('christoomey/vim-tmux-runner')
 call dein#add('tpope/vim-obsession')
 call dein#add('honza/vim-snippets')
 call dein#add('vim-scripts/BufOnly.vim') " delete all buffers but the current
@@ -47,7 +48,6 @@ call dein#add('ryanoasis/vim-devicons')
 call dein#add('janko-m/vim-test')
 call dein#add('mhinz/vim-startify')
 call dein#add('Yggdroot/indentLine')
-" call dein#add('terryma/vim-multiple-cursors')
 call dein#add('jiangmiao/auto-pairs')
 "javascript config
 call dein#add('pangloss/vim-javascript', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx', 'javascriptreact']})
@@ -292,15 +292,6 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
-
-""multicursors
-"let g:multi_cursor_use_default_mapping = 0
-"let g:multi_cursor_start_word_key      = '<C-n>'
-"let g:multi_cursor_select_all_word_key = '<leader>n'
-"let g:multi_cursor_next_key            = '<C-n>'
-"let g:multi_cursor_prev_key            = '<C-p>'
-"let g:multi_cursor_skip_key            = '<C-x>'
-"let g:multi_cursor_quit_key            = '<Esc>'
 
 " Vim-Test Mappings
 nmap <silent> <leader>s :TestNearest<CR>
