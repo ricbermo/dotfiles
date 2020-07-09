@@ -1,4 +1,12 @@
 {
   "tsserver.npm": "/usr/local/bin/node",
-  "coc.preferences.extensionUpdateCheck": "daily"
+  "coc.preferences.extensionUpdateCheck": "daily",
+  "eslint.run": "onSave",
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "json",
+    "dart"
+  ],
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true
 }

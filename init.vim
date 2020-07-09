@@ -33,9 +33,7 @@ call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 call dein#add('eugen0329/vim-esearch')
 call dein#add('scrooloose/nerdtree')
 call dein#add('Xuyuanp/nerdtree-git-plugin')
-call dein#add('lambdalisue/gina.vim') "git manager
 call dein#add('tpope/vim-commentary')
-call dein#add('dense-analysis/ale') " lint engine
 call dein#add('tpope/vim-surround')
 call dein#add('mattn/emmet-vim')
 call dein#add('ntpeters/vim-better-whitespace')
@@ -51,7 +49,6 @@ call dein#add('Yggdroot/indentLine')
 call dein#add('jiangmiao/auto-pairs')
 "javascript config
 call dein#add('pangloss/vim-javascript', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx', 'javascriptreact']})
-call dein#add('othree/jspc.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx', 'javascriptreact']})
 call dein#add('othree/javascript-libraries-syntax.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx', 'javascriptreact']})
 call dein#add('maxmellon/vim-jsx-pretty', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx', 'javascriptreact']})
 call dein#add('HerringtonDarkholme/yats.vim')
@@ -110,6 +107,8 @@ set cmdheight=2 " Better display for messages
 set updatetime=300
 set shortmess+=c " don't give |ins-completion-menu| messages.
 set signcolumn=yes " always show signcolumns
+set hidden " allow buffer switching without saving
+set showtabline=2 " always show tabline
 
 "Get correct comment highlighting
 autocmd FileType json syntax match Comment +\/\/.\+$+
@@ -140,14 +139,13 @@ highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE gui
 hi CursorLineNr guifg=#F4511E
 
 "FZF Settings
-" imap <c-x><c-f> <plug>(fzf-complete-path)
-" imap <c-x><c-j> <plug>(fzf-complete-file)
-" imap <c-x><c-l> <plug>(fzf-complete-line)
-" " supercharge FZF
-" " https://medium.com/@crashybang/supercharge-vim-with-fzf-and-ripgrep-d4661fc853d2
-command! -bang -nargs=* Find call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --hidden --follow --glob "!.git/*" --color "always" '.shellescape(<q-args>), 1, <bang>0)
 
-nnoremap <c-p> :FZF<cr>
+command! -bang -nargs=* GGrep
+  \ call fzf#vim#grep(
+  \   'git grep --line-number -- '.shellescape(<q-args>), 0,
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
+
+nnoremap <c-p> :GFiles<cr>
 
 augroup fzf
   autocmd!
@@ -159,15 +157,6 @@ augroup END
 " Trim whitespace on save: vim-better-whitespace
 autocmd BufWritePre * StripWhitespace
 
-"ALE config
-let g:ale_linters = { 'javascript': ['eslint'] }
-let g:ale_sign_column_always = 1
-let g:ale_lint_on_text_changed = 'never'
-let g:ale_lint_on_enter = 0
-nmap <silent> <leader>fp <Plug>(ale_fix)
-nmap <silent> <leader>pe <Plug>(ale_previous_wrap)
-nmap <silent> <leader>ne <Plug>(ale_next_wrap)
-
 " OSX stupid backspace fix
 set backspace=indent,eol,start
 
@@ -177,7 +166,7 @@ let g:rainbow_active = 1
 let g:ultisnips_javascript = {
 \ 'keyword-spacing': 'always',
 \ 'semi': 'never',
-\ 'space-before-function-paren': 'always',
+\ 'space-before-function-paren': 'never',
 \ }
 
 " nerdtree + startify
@@ -196,12 +185,22 @@ nmap <silent> <leader>ti :IndentLinesToggle<CR>
 
 "Lightline
 set noshowmode "hide edit mode
+
+function! CocCurrentFunction()
+  return get(b:, 'coc_current_function', '')
+endfunction
+
+function! LightlineGit()
+  return get(g:, 'coc_git_status', '')
+endfunction
+
+
 let g:lightline = {
 \ 'colorscheme': 'challenger_deep',
 \ 'separator': { 'left': '', 'right': '' },
 \ 'active': {
-\   'left': [['mode', 'paste'], ['gitbranch', 'filename', 'modified']],
-\   'right': [['lineinfo'], ['percent'], ['readonly', 'linter_warnings', 'linter_errors', 'linter_ok']]
+\   'left': [['mode', 'paste'], ['gitbranch', 'filename', 'currentfunction', 'modified']],
+\   'right': [['lineinfo'], ['percent'], ['readonly', 'cocstatus']]
 \ },
 \ 'tabline': {
 \   'left': [ [ 'bufferinfo' ],
@@ -210,52 +209,26 @@ let g:lightline = {
 \   'right': [ [ 'close' ], ],
 \ },
 \ 'component_expand': {
-\   'linter_warnings': 'LightlineLinterWarnings',
-\   'linter_errors': 'LightlineLinterErrors',
-\   'linter_ok': 'LightlineLinterOK',
 \   'buffercurrent': 'lightline#buffer#buffercurrent',
 \   'bufferbefore': 'lightline#buffer#bufferbefore',
 \   'bufferafter': 'lightline#buffer#bufferafter',
 \ },
 \ 'component_type': {
 \   'readonly': 'error',
-\   'linter_warnings': 'warning',
-\   'linter_errors': 'error',
 \   'buffercurrent': 'tabsel',
 \   'bufferbefore': 'raw',
 \   'bufferafter': 'raw',
 \ },
 \ 'component_function': {
-\   'gitbranch': 'gina#component#repo#branch',
+\   'gitbranch': 'LightlineGit',
 \   'bufferinfo': 'lightline#buffer#bufferinfo',
+\   'cocstatus': 'coc#status',
+\   'currentfunction': 'CocCurrentFunction'
 \ },
 \ }
 
-function! LightlineLinterWarnings() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ◆', all_non_errors)
-endfunction
+" autocmd User CocGitStatusChange {command}
 
-function! LightlineLinterErrors() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '' : printf('%d ✗', all_errors)
-endfunction
-
-function! LightlineLinterOK() abort
-  let l:counts = ale#statusline#Count(bufnr(''))
-  let l:all_errors = l:counts.error + l:counts.style_error
-  let l:all_non_errors = l:counts.total - l:all_errors
-  return l:counts.total == 0 ? '✓ ' : ''
-endfunction
-
-autocmd User ALELint call lightline#update()
-
-set hidden " allow buffer switching without saving
-set showtabline=2 " always show tabline
 
 " lightline-buffer
 let g:lightline_buffer_modified_icon = '✭'
@@ -301,7 +274,7 @@ nmap <silent> <leader>a :TestSuite<CR>
 " toggle css colors
 nnoremap <silent><leader>tc :call css_color#toggle()<CR>
 
-"COC Config
+"CoC Config
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -335,13 +308,20 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 " Add `:Fold` command to fold current buffer.
-command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+command! -nargs=? Fold :call CocAction('fold', <f-args>)
 
 " Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR :call CocAction('runCommand', 'editor.action.organizeImport')
+
+" Add prettier
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+nmap <silent> <leader>fp :Prettier<CR>
 
 " Remap for rename current word
 nmap <leader>rn <Plug>(coc-rename)
+
+let g:coc_status_error_sign='❌ '
+let g:coc_status_warning_sign='⚠️  '
 
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
