@@ -63,6 +63,7 @@ call dein#add('rakr/vim-one')
 call dein#add('challenger-deep-theme/vim')
 call dein#add('luochen1990/rainbow')
 call dein#add('ap/vim-css-color')
+call dein#add('chuling/pure-material.vim')
 
 "Dart/Flutter
 call dein#add('dart-lang/dart-vim-plugin', {'on_ft': ['dart']})
@@ -75,6 +76,7 @@ endif
 
 filetype plugin indent on
 syntax enable
+syntax on
 
 set rnu
 set noerrorbells
@@ -109,6 +111,7 @@ set shortmess+=c " don't give |ins-completion-menu| messages.
 set signcolumn=yes " always show signcolumns
 set hidden " allow buffer switching without saving
 set showtabline=2 " always show tabline
+set fillchars+=vert:│ " best vertsplit char
 
 "Get correct comment highlighting
 autocmd FileType json syntax match Comment +\/\/.\+$+
@@ -132,7 +135,7 @@ map <Leader>fnt :NERDTreeFind<CR>
 let NERDTreeShowLineNumbers=1
 
 " Theming
-colorscheme challenger_deep
+colorscheme pure_material
 hi CursorLine  cterm=NONE ctermbg=darkred ctermfg=white guibg=#263238 guifg=NONE
 set cursorline
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=#9E9E9E guibg=NONE
@@ -194,9 +197,9 @@ function! LightlineGit()
   return get(g:, 'coc_git_status', '')
 endfunction
 
-
+let g:airline_theme = 'pure_material'
 let g:lightline = {
-\ 'colorscheme': 'challenger_deep',
+\ 'colorscheme': 'pure_material',
 \ 'separator': { 'left': '', 'right': '' },
 \ 'active': {
 \   'left': [['mode', 'paste'], ['gitbranch', 'filename', 'currentfunction', 'modified']],
