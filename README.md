@@ -14,6 +14,7 @@
 5. `brew install neovim`
 6. `brew install tmux`
 7. `brew install bat`
+8. Install [LS_COLORS](https://github.com/trapd00r/LS_COLORS)
 
 ### for JS developement
 1. `npm install -g eslint prettier eslint_d`

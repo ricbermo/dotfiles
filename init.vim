@@ -31,8 +31,7 @@ call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
 call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 call dein#add('eugen0329/vim-esearch')
-call dein#add('scrooloose/nerdtree')
-call dein#add('Xuyuanp/nerdtree-git-plugin')
+call dein#add('ms-jpq/chadtree')
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-surround')
 call dein#add('mattn/emmet-vim')
@@ -129,10 +128,9 @@ let test#strategy = "vtr"
 let g:test#preserve_screen = 1
 let g:test#runner_commands = ['Jest']
 
-" NERDTree config
-map <Leader>b :NERDTreeToggle<CR>
-map <Leader>fnt :NERDTreeFind<CR>
-let NERDTreeShowLineNumbers=1
+"CHADTree config
+nnoremap <leader>b <cmd>CHADopen<cr>
+nnoremap <leader>l <cmd>call setqflist([])<cr>
 
 " Theming
 colorscheme pure_material
@@ -148,7 +146,7 @@ command! -bang -nargs=* GGrep
   \   'git grep --line-number -- '.shellescape(<q-args>), 0,
   \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 
-nnoremap <c-p> :GFiles<cr>
+nnoremap <c-p> :Files<cr>
 
 augroup fzf
   autocmd!
@@ -172,18 +170,17 @@ let g:ultisnips_javascript = {
 \ 'space-before-function-paren': 'never',
 \ }
 
-" nerdtree + startify
+" Startify
 autocmd VimEnter *
 \   if !argc()
 \ |   Startify
-\ |   NERDTree
 \ |   wincmd w
 \ | endif
 
 " indent guides
 let g:indentLine_char = '¦'
 let g:indentLine_enabled = 1
-let g:indentLine_fileTypeExclude = ['help', 'nerdtree', 'startify']
+let g:indentLine_fileTypeExclude = ['help', 'startify']
 nmap <silent> <leader>ti :IndentLinesToggle<CR>
 
 "Lightline
