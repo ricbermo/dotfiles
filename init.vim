@@ -131,6 +131,7 @@ let g:test#runner_commands = ['Jest']
 "CHADTree config
 nnoremap <leader>b <cmd>CHADopen<cr>
 nnoremap <leader>l <cmd>call setqflist([])<cr>
+lua vim.api.nvim_set_var("chadtree_view", { window_options = {"relativenumber", ...} })
 
 " Theming
 colorscheme pure_material
