@@ -34,7 +34,6 @@ call dein#add('eugen0329/vim-esearch')
 call dein#add('ms-jpq/chadtree')
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-surround')
-call dein#add('mattn/emmet-vim')
 call dein#add('ntpeters/vim-better-whitespace')
 call dein#add('roxma/vim-tmux-clipboard')
 call dein#add('christoomey/vim-tmux-runner')
@@ -60,9 +59,9 @@ call dein#add('gu-fan/lastbuf.vim')
 " Theming
 call dein#add('rakr/vim-one')
 call dein#add('challenger-deep-theme/vim')
-call dein#add('luochen1990/rainbow')
+" call dein#add('luochen1990/rainbow')
 call dein#add('ap/vim-css-color')
-call dein#add('chuling/pure-material.vim')
+call dein#add('chuling/equinusocio-material.vim')
 
 "Dart/Flutter
 call dein#add('dart-lang/dart-vim-plugin', {'on_ft': ['dart']})
@@ -133,12 +132,21 @@ nnoremap <leader>b <cmd>CHADopen<cr>
 nnoremap <leader>l <cmd>call setqflist([])<cr>
 lua vim.api.nvim_set_var("chadtree_view", { window_options = {"relativenumber", ...} })
 
-" Theming
-colorscheme pure_material
-hi CursorLine  cterm=NONE ctermbg=darkred ctermfg=white guibg=#263238 guifg=NONE
+"Theming
 set cursorline
+set fillchars+=vert:│
+
+let g:equinusocio_material_style = 'pure'
+let g:equinusocio_material_bracket_improved = 1
+" let g:equinusocio_material_less = 50
+colorscheme equinusocio_material
+
+hi CursorLine  cterm=NONE ctermbg=darkred ctermfg=white guibg=#263238 guifg=NONE
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=#9E9E9E guibg=NONE
 hi CursorLineNr guifg=#F4511E
+" change colors for matching parenthesis
+" let g:rainbow_active = 1
+
 
 "FZF Settings
 
@@ -161,9 +169,6 @@ autocmd BufWritePre * StripWhitespace
 
 " OSX stupid backspace fix
 set backspace=indent,eol,start
-
-" change colors for matching parenthesis
-let g:rainbow_active = 1
 
 let g:ultisnips_javascript = {
 \ 'keyword-spacing': 'always',
@@ -195,9 +200,9 @@ function! LightlineGit()
   return get(g:, 'coc_git_status', '')
 endfunction
 
-let g:airline_theme = 'pure_material'
+let g:airline_theme = 'equinusocio_material'
 let g:lightline = {
-\ 'colorscheme': 'pure_material',
+\ 'colorscheme': 'equinusocio_material',
 \ 'separator': { 'left': '', 'right': '' },
 \ 'active': {
 \   'left': [['mode', 'paste'], ['gitbranch', 'filename', 'currentfunction', 'modified']],
