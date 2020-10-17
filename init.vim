@@ -170,12 +170,6 @@ autocmd BufWritePre * StripWhitespace
 " OSX stupid backspace fix
 set backspace=indent,eol,start
 
-let g:ultisnips_javascript = {
-\ 'keyword-spacing': 'always',
-\ 'semi': 'never',
-\ 'space-before-function-paren': 'never',
-\ }
-
 " Startify
 autocmd VimEnter *
 \   if !argc()
