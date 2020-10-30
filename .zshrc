@@ -4,7 +4,7 @@ eval $(gdircolors -b $HOME/LS_COLORS)
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/ricbermo/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -115,14 +115,18 @@ alias oni2='/Applications/Onivim2.app/Contents/MacOS/Oni2'
 alias fr="flutter run"
 alias fp="flutter pub get"
 
-export HOMEBREW_GITHUB_API_TOKEN=""
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
+#Pyenv variable to allow compilations
+export CFLAGS="-I$(brew --prefix openssl)/include"
+export LDFLAGS="-L$(brew --prefix openssl)/lib"
+
 export ANDROID_HOME=$HOME/Library/Android/sdk
+export ANDROID_PLATFORM_TOOLS=$ANDROID_HOME/platform-tools
 export PATH="$HOME/.fastlane/bin:$PATH"
 export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_PLATFORM_TOOLS
 export PATH="/usr/local/opt/openssl/bin:$PATH"
 export PATH=$HOME/.fluter-dev/flutter/bin:$PATH
 export PATH="$PATH":"$HOME/.pub-cache/bin"
