@@ -18,7 +18,6 @@
 
 ### for JS developement
 1. `npm install -g eslint prettier eslint_d`
-2. `npm install -g tern` for Javascript development
 
 
 ### for Dart developement
