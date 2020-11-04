@@ -319,6 +319,10 @@ nmap <leader>rn <Plug>(coc-rename)
 let g:coc_status_error_sign='❌ '
 let g:coc_status_warning_sign='⚠️  '
 
+" Example: `<leader>aap` for current paragraph, <leader>aw for the current word
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
