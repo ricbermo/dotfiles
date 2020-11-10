@@ -1,6 +1,13 @@
-" " prettier formatting tool
-" let g:ale_fixers = {}
-" let g:ale_fixers['javascript'] = ['prettier', 'eslint']
-" let g:ale_fixers['javascriptreact'] = ['prettier', 'eslint']
+set path=.,src
+set suffixesadd=.js,.jsx,.tsx
 
-" call jspc#init()
+function! LoadMainNodeModule(fname)
+    let nodeModules = "./node_modules/"
+    let packageJsonPath = nodeModules . a:fname . "/package.json"
+
+    if filereadable(packageJsonPath)
+        return nodeModules . a:fname . "/" . json_decode(join(readfile(packageJsonPath))).main
+    else
+        return nodeModules . a:fname
+    endif
+endfunction

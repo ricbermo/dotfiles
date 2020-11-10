@@ -30,7 +30,6 @@ call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
 
 call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
-call dein#add('eugen0329/vim-esearch')
 call dein#add('ms-jpq/chadtree')
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-surround')
@@ -49,17 +48,14 @@ call dein#add('othree/html5.vim')
 call dein#add('itchyny/lightline.vim')
 call dein#add('taohexxx/lightline-buffer')
 call dein#add('gu-fan/lastbuf.vim')
+call dein#add('eugen0329/vim-esearch')
 
 "javascript config
 call dein#add('pangloss/vim-javascript', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx', 'javascriptreact']})
 call dein#add('maxmellon/vim-jsx-pretty', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx', 'javascriptreact']})
 call dein#add('HerringtonDarkholme/yats.vim')
-call dein#add('hotoo/jsgf.vim', {'lazy': 1, 'on_ft': ['javascript', 'javascript.jsx', 'javascriptreact']}) " better gf for JS
 
 " Theming
-" call dein#add('rakr/vim-one')
-" call dein#add('challenger-deep-theme/vim')
-" call dein#add('luochen1990/rainbow')
 call dein#add('ap/vim-css-color')
 call dein#add('chuling/equinusocio-material.vim')
 
@@ -110,7 +106,6 @@ set signcolumn=yes " always show signcolumns
 set hidden " allow buffer switching without saving
 set showtabline=2 " always show tabline
 set fillchars+=vert:│ " best vertsplit char
-set autochdir
 
 "Get correct comment highlighting
 autocmd FileType json syntax match Comment +\/\/.\+$+
