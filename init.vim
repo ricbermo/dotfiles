@@ -30,7 +30,12 @@ call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
 
 call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
-call dein#add('ms-jpq/chadtree')
+call dein#add('lambdalisue/fern.vim')
+call dein#add('lambdalisue/nerdfont.vim')
+call dein#add('lambdalisue/fern-renderer-nerdfont.vim')
+call dein#add('antoinemadec/FixCursorHold.nvim')
+call dein#add('lambdalisue/fern-git-status.vim')
+
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-surround')
 call dein#add('ntpeters/vim-better-whitespace')
@@ -118,10 +123,11 @@ let test#strategy = "vtr"
 let g:test#preserve_screen = 1
 let g:test#runner_commands = ['Jest']
 
-"CHADTree config
-nnoremap <leader>b <cmd>CHADopen<cr>
-nnoremap <leader>l <cmd>call setqflist([])<cr>
-lua vim.api.nvim_set_var("chadtree_view", { window_options = {"relativenumber", ...} })
+" Fern
+let g:fern#renderer = "nerdfont"
+let g:cursorhold_updatetime = 100
+nnoremap <leader>b <cmd>Fern . -drawer -width=40 -toggle<cr>
+nnoremap <leader>fnt <cmd>Fern . -drawer -width=40 -toggle -reveal=%<cr>
 
 "Theming
 set cursorline

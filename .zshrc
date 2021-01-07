@@ -124,13 +124,17 @@ export LDFLAGS="-L$(brew --prefix openssl)/lib"
 
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export ANDROID_PLATFORM_TOOLS=$ANDROID_HOME/platform-tools
-export PATH="$HOME/.fastlane/bin:$PATH"
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_PLATFORM_TOOLS
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH=$HOME/.fluter-dev/flutter/bin:$PATH
-export PATH="$PATH":"$HOME/.pub-cache/bin"
+
+export PATH="$PATH:$HOME/.fastlane/bin"
+export PATH="$PATH:$ANDROID_HOME/tools"
+export PATH="$PATH:$ANDROID_PLATFORM_TOOLS"
+export PATH="$PATH:/usr/local/opt/openssl/bin"
+export PATH="$PATH:$HOME/.fluter-dev/flutter/bin"
+export PATH="$PATH:$HOME/.fluter-dev/flutter/.pub-cache/bin"
+export PATH="$PATH:$HOME/.fluter-dev/flutter/bin/cache/dart-sdk/bin"
+export PATH="$PATH:$HOME/.pub-cache/bin"
 export PATH="$PATH:$HOME/.composer/vendor/bin"
+
 export REACT_EDITOR=nvim
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm

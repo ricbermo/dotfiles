@@ -10,7 +10,11 @@
   ],
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "snippets.extends": {
-    "javascriptreact": ["javascript"],
-    "typescript": ["javascript"]
+    "javascriptreact": [
+      "javascript"
+    ],
+    "typescript": [
+      "javascript"
+    ]
   }
 }
