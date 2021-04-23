@@ -31,13 +31,14 @@
 1. [plugin manager](https://github.com/tmux-plugins/tpm)
 
 ### Create symbolic links
-`Create the folders (~/.config/nvim) if they don't exist`
+`Create the folders (~/.config/nvim and .config/alacritty) if they don't exist`
 
 1. `ln -s ~/development/dotfiles/init.vim ~/.config/nvim/init.vim`
 2. `ln -s ~/development/dotfiles/.tmux.conf ~/.tmux.conf`
 3. `ln -s ~/development/dotfiles/.zshrc ~/.zshrc`
 4. `ln -s ~/development/dotfiles/after/ ~/.config/nvim/`
 5. `ln -s ~/development/dotfiles/coc-settings.json ~/.config/nvim/coc-settings.json`
+6. `ln -s ~/development/dotfiles/alacritty.yml  ~/.config/alacritty/alacritty.yml`
 
 
 ### Install the COC extensions

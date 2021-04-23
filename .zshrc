@@ -1,3 +1,4 @@
+zmodload zsh/zprof
 # LS_COLORS support https://github.com/trapd00r/LS_COLORS
 eval $(gdircolors -b $HOME/LS_COLORS)
 # If you come from bash you might have to change your $PATH.
@@ -53,7 +54,13 @@ CASE_SENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+export NVM_LAZY_LOAD=true
+export NVM_COMPLETION=true
+export NVM_AUTO_USE=true
+
+source ~/.oh-my-zsh/custom/plugins/forgit
+
+plugins=(zsh-nvm forgit git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -114,6 +121,11 @@ alias bla="./gradlew clean && ./gradlew assembleRelease"
 alias oni2='/Applications/Onivim2.app/Contents/MacOS/Oni2'
 alias fr="flutter run"
 alias fp="flutter pub get"
+alias fe="flutter emulators"
+alias fei="flutter emulators --launch apple_ios_simulator"
+alias fea="flutter emulators --launch Pixel_4_XL_API_26"
+alias fw="flutter packages pub run build_runner watch --delete-conflicting-outputs"
+alias ft="flutter test"
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -125,48 +137,21 @@ export LDFLAGS="-L$(brew --prefix openssl)/lib"
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export ANDROID_PLATFORM_TOOLS=$ANDROID_HOME/platform-tools
 
-export PATH="$PATH:$HOME/.fastlane/bin"
-export PATH="$PATH:$ANDROID_HOME/tools"
-export PATH="$PATH:$ANDROID_PLATFORM_TOOLS"
-export PATH="$PATH:/usr/local/opt/openssl/bin"
-export PATH="$PATH:$HOME/.fluter-dev/flutter/bin"
-export PATH="$PATH:$HOME/.fluter-dev/flutter/.pub-cache/bin"
-export PATH="$PATH:$HOME/.fluter-dev/flutter/bin/cache/dart-sdk/bin"
-export PATH="$PATH:$HOME/.pub-cache/bin"
-export PATH="$PATH:$HOME/.composer/vendor/bin"
+PATH="$PATH:$HOME/.fastlane/bin"
+PATH="$PATH:$ANDROID_HOME/tools"
+PATH="$PATH:$ANDROID_PLATFORM_TOOLS"
+PATH="$PATH:/usr/local/opt/openssl/bin"
+PATH="$PATH:$HOME/fvm/default/bin"
+PATH="$PATH:$HOME/fvm/default/.pub-cache/bin"
+PATH="$PATH:$HOME/fvm/default/bin/cache/dart-sdk/bin"
+PATH="$PATH:$HOME/.pub-cache/bin"
+PATH="$PATH:$HOME/.rvm/bin"
+export PATH
 
 export REACT_EDITOR=nvim
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# place this after nvm initialization!
-autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
-add-zsh-hook chpwd load-nvmrc
-load-nvmrc
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"

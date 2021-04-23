@@ -121,7 +121,6 @@ let g:vim_jsx_pretty_colorful_config = 1
 "Testing helpers
 let test#strategy = "vtr"
 let g:test#preserve_screen = 1
-let g:test#runner_commands = ['Jest']
 
 " Fern
 let g:fern#renderer = "nerdfont"
