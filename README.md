@@ -42,11 +42,13 @@
 
 
 ### Install the COC extensions
+- HTML, JS, CSSand JSON `:CocInstall coc-tsserver coc-json coc-html coc-css`
 - [Snippets](https://github.com/neoclide/coc-snippets)
 - [Flutter](https://github.com/iamcco/coc-flutter)
 - [Git](https://github.com/neoclide/coc-git)
-- HTML, JS, CSSand JSON `:CocInstall coc-tsserver coc-json coc-html coc-css`
-
+- [Yaml](https://github.com/neoclide/coc-yaml)
+- [Prettier](https://github.com/neoclide/coc-prettier)
+- [ESLint](https://github.com/neoclide/coc-eslint)
 
 
 ### Finally
