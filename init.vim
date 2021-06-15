@@ -63,7 +63,8 @@ call dein#add('HerringtonDarkholme/yats.vim')
 
 " Theming
 call dein#add('ap/vim-css-color')
-call dein#add('chuling/equinusocio-material.vim')
+" call dein#add('chuling/equinusocio-material.vim')
+call dein#add('ghifarit53/tokyonight-vim')
 
 "Dart/Flutter
 call dein#add('dart-lang/dart-vim-plugin', {'on_ft': ['dart']})
@@ -133,10 +134,11 @@ nnoremap <leader>fnt <cmd>Fern . -drawer -width=40 -toggle -reveal=%<cr>
 set cursorline
 set fillchars+=vert:│
 
-let g:equinusocio_material_style = 'pure'
-let g:equinusocio_material_bracket_improved = 1
+" let g:equinusocio_material_style = 'pure'
+" let g:equinusocio_material_bracket_improved = 1
 " let g:equinusocio_material_less = 50
-colorscheme equinusocio_material
+" colorscheme equinusocio_material
+colorscheme tokyonight
 
 hi CursorLine  cterm=NONE ctermbg=darkred ctermfg=white guibg=#263238 guifg=NONE
 highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=#9E9E9E guibg=NONE
@@ -191,9 +193,9 @@ function! LightlineGit()
   return get(g:, 'coc_git_status', '')
 endfunction
 
-let g:airline_theme = 'equinusocio_material'
+let g:airline_theme = 'tokyonight'
 let g:lightline = {
-\ 'colorscheme': 'equinusocio_material',
+\ 'colorscheme': 'tokyonight',
 \ 'separator': { 'left': '', 'right': '' },
 \ 'active': {
 \   'left': [['mode', 'paste'], ['gitbranch', 'filename', 'currentfunction', 'modified']],

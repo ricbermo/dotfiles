@@ -9,29 +9,21 @@
   - run `pip3 install --user --upgrade neovim` to upgrade py3 neovim.
   - install py2 neovim `pip2 install --user --upgrade neovim`
 2. [the_silver_searcher](https://github.com/ggreer/the_silver_searcher), for quick search/find
-3. [Nerd forms](https://github.com/ryanoasis/nerd-fonts) to display icons in NerdTree (recomended font: dejavu sans mono for powerline nerd font)
+3. Install [Fira Mono Nerd Font](https://github.com/ryanoasis/nerd-fonts)
 4. `brew install ripgrep` for faster CTRLP
 5. `brew install neovim`
 6. `brew install tmux`
 7. `brew install bat`
-8. Install [LS_COLORS](https://github.com/trapd00r/LS_COLORS)
-
-### for JS developement
-1. `npm install -g eslint prettier eslint_d`
-
-
-### for Dart developement
-1.  [dart_language_server](https://github.com/natebosch/dart_language_server)
-
-
-### to use this on a mac
-1. `brew install reattach-to-user-namespace`
+8. Install [LS_COLORS](https://github.com/trapd00r/LS_COLORS/issues/150#issuecomment-600887571)
+10. `git clone https://github.com/wfxr/forgit ~/.oh-my-zsh/custom/plugins/forgit`
+11. `git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm`
+12. Run `sudo xcode-select --switch /Applications/Xcode.app`
 
 ## Tmux
 1. [plugin manager](https://github.com/tmux-plugins/tpm)
 
 ### Create symbolic links
-`Create the folders (~/.config/nvim and .config/alacritty) if they don't exist`
+`Create the folders (~/.config/nvim and ~/.config/alacritty) if they don't exist`
 
 1. `ln -s ~/development/dotfiles/init.vim ~/.config/nvim/init.vim`
 2. `ln -s ~/development/dotfiles/.tmux.conf ~/.tmux.conf`
@@ -40,18 +32,14 @@
 5. `ln -s ~/development/dotfiles/coc-settings.json ~/.config/nvim/coc-settings.json`
 6. `ln -s ~/development/dotfiles/alacritty.yml  ~/.config/alacritty/alacritty.yml`
 
-
-### Install the COC extensions
-- HTML, JS, CSSand JSON `:CocInstall coc-tsserver coc-json coc-html coc-css`
-- [Snippets](https://github.com/neoclide/coc-snippets)
-- [Flutter](https://github.com/iamcco/coc-flutter)
-- [Git](https://github.com/neoclide/coc-git)
-- [Yaml](https://github.com/neoclide/coc-yaml)
-- [Prettier](https://github.com/neoclide/coc-prettier)
-- [ESLint](https://github.com/neoclide/coc-eslint)
+### for JS developement
+1. Install node using NVM, then set it as default using `nvm alias default <version>`
+2. `:CocInstall coc-tsserver coc-json coc-html coc-css coc-snippets coc-flutter coc-git coc-yaml coc-prettier coc-eslint`
 
 
-### Finally
-1. Get a OAuth github token for HomeBrew
-2. `brew cask install font-firacode-nerd-font font-firacode-nerd-font-mono`
-3. `brew cask install font-dejavusansmono-nerd-font font-dejavusansmono-nerd-font-mono font-dejavu-sans-mono-for-powerline`
+### for Dart developement
+1.  [dart_language_server](https://github.com/natebosch/dart_language_server)
+
+
+### Usefull guides
+1. [Install Ruby](https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/?utm_source=stackoverflow)
