@@ -13,7 +13,6 @@
 4. `brew install ripgrep` for faster CTRLP
 5. `brew install neovim`
 6. `brew install tmux`
-7. `brew install bat`
 8. Install [LS_COLORS](https://github.com/trapd00r/LS_COLORS/issues/150#issuecomment-600887571)
 10. `git clone https://github.com/wfxr/forgit ~/.oh-my-zsh/custom/plugins/forgit`
 11. `git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm`
@@ -43,3 +42,7 @@
 
 ### Usefull guides
 1. [Install Ruby](https://www.moncefbelyamani.com/how-to-install-xcode-homebrew-git-rvm-ruby-on-mac/?utm_source=stackoverflow)
+
+### Goddies
+- [Delta](https://github.com/dandavison/delta#installation)
+- [Bat](https://github.com/sharkdp/bat)

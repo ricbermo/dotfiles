@@ -63,7 +63,6 @@ call dein#add('HerringtonDarkholme/yats.vim')
 
 " Theming
 call dein#add('ap/vim-css-color')
-" call dein#add('chuling/equinusocio-material.vim')
 call dein#add('ghifarit53/tokyonight-vim')
 
 "Dart/Flutter
@@ -146,7 +145,6 @@ hi CursorLineNr guifg=#F4511E
 " change colors for matching parenthesis
 " let g:rainbow_active = 1
 
-
 "FZF Settings
 
 command! -bang -nargs=* GGrep
@@ -226,9 +224,6 @@ let g:lightline = {
 \ },
 \ }
 
-" autocmd User CocGitStatusChange {command}
-
-
 " lightline-buffer
 let g:lightline_buffer_modified_icon = '✭'
 let g:lightline_buffer_git_icon = ' '
@@ -289,7 +284,6 @@ inoremap <silent><expr> <Tab>
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
 
-
 " Use `[g` and `]g` to navigate diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
@@ -333,6 +327,9 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+let g:esearch = {}
+let g:esearch.adapter = 'ag'
 
 let g:ascii = [
 \' ____  _                   _         ____               _       _',
