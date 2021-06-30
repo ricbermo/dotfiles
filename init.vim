@@ -31,29 +31,22 @@ call dein#add('neoclide/coc.nvim', {'merged':0, 'rev': 'release'})
 call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
 call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
 call dein#add('lambdalisue/fern.vim')
-call dein#add('lambdalisue/nerdfont.vim')
-call dein#add('lambdalisue/fern-renderer-nerdfont.vim')
 call dein#add('antoinemadec/FixCursorHold.nvim')
 call dein#add('lambdalisue/fern-git-status.vim')
 
 call dein#add('tpope/vim-commentary')
 call dein#add('tpope/vim-surround')
-call dein#add('ntpeters/vim-better-whitespace')
 call dein#add('roxma/vim-tmux-clipboard')
 call dein#add('christoomey/vim-tmux-runner')
-call dein#add('tpope/vim-obsession')
 call dein#add('honza/vim-snippets')
 call dein#add('vim-scripts/BufOnly.vim') " delete all buffers but the current
-call dein#add('ryanoasis/vim-devicons')
 call dein#add('janko-m/vim-test')
-call dein#add('mhinz/vim-startify')
 call dein#add('Yggdroot/indentLine')
 call dein#add('jiangmiao/auto-pairs')
 call dein#add('othree/html5.vim')
 call dein#add('mattn/emmet-vim')
 call dein#add('itchyny/lightline.vim')
 call dein#add('taohexxx/lightline-buffer')
-call dein#add('gu-fan/lastbuf.vim')
 call dein#add('eugen0329/vim-esearch')
 
 "javascript config
@@ -64,6 +57,11 @@ call dein#add('HerringtonDarkholme/yats.vim')
 " Theming
 call dein#add('ap/vim-css-color')
 call dein#add('ghifarit53/tokyonight-vim')
+call dein#add('lambdalisue/nerdfont.vim')
+call dein#add('mhinz/vim-startify')
+call dein#add('lambdalisue/fern-renderer-nerdfont.vim')
+call dein#add('ntpeters/vim-better-whitespace')
+" call dein#add('ryanoasis/vim-devicons')
 
 "Dart/Flutter
 call dein#add('dart-lang/dart-vim-plugin', {'on_ft': ['dart']})
@@ -243,16 +241,15 @@ let g:lightline_buffer_minfextlen = 3
 let g:lightline_buffer_reservelen = 20
 let g:lightline_buffer_enable_devicons = 1
 
+" Buffer Navigation
 nnoremap <Leader>[ :bprev<CR>
 nnoremap <Leader>] :bnext<CR>
 nnoremap <Leader>db :bd<CR>
 nnoremap <Leader>cb :bufdo bwipeout<CR>
+nnoremap <Leader>, :Buffers<CR>
 
 "remove hightlights
 nnoremap <silent> <esc> <esc>:noh<return><esc>
-
-" reopen last closed buffer
-let g:lastbuf_level=2 "since I'm closing buffers with db
 
 " Map window prefix to ommit W
 map <C-j> <C-W>j
@@ -261,9 +258,8 @@ map <C-h> <C-W>h
 map <C-l> <C-W>l
 
 " Vim-Test Mappings
-nmap <silent> <leader>s :TestNearest<CR>
 nmap <silent> <leader>t :TestFile<CR>
-nmap <silent> <leader>a :TestSuite<CR>
+nmap <silent> <leader>s :TestSuite<CR>
 
 " toggle css colors
 nnoremap <silent><leader>tc :call css_color#toggle()<CR>
