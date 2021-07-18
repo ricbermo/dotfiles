@@ -6,18 +6,12 @@
     "javascript",
     "javascriptreact",
     "json",
-    "dart"
+    "dart",
+    "ruby"
   ],
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "snippets.extends": {
-    "javascriptreact": [
-      "javascript"
-    ],
-    "typescript": [
-      "javascript"
-    ]
-  },
-  "cSpell.userWords": [
-    "Spotify"
-  ]
+    "javascriptreact": ["javascript"],
+    "typescript": ["javascript"]
+  }
 }
