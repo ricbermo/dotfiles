@@ -58,9 +58,10 @@ export NVM_LAZY_LOAD=true
 export NVM_COMPLETION=true
 export NVM_AUTO_USE=true
 
+
 source ~/.oh-my-zsh/custom/plugins/forgit
 
-plugins=(zsh-nvm forgit git)
+plugins=(asdf forgit git)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -126,29 +127,29 @@ alias ft="flutter test"
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
-#Pyenv variable to allow compilations
-export CFLAGS="-I$(brew --prefix openssl)/include"
-export LDFLAGS="-L$(brew --prefix openssl)/lib"
-
-ANDROID_HOME=$HOME/Library/Android/sdk
-PATH=$PATH:$ANDROID_HOME/emulator
-PATH=$PATH:$ANDROID_HOME/tools
-PATH=$PATH:$ANDROID_HOME/tools/bin
-PATH=$PATH:$ANDROID_HOME/platform-tools
-PATH="$PATH:$HOME/.fastlane/bin"
-PATH="$PATH:$ANDROID_HOME/tools"
+ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+PATH=$PATH:$ANDROID_SDK_ROOT/emulator
+PATH=$PATH:$ANDROID_SDK_ROOT/tools
+PATH=$PATH:$ANDROID_SDK_ROOT/tools/bin
+PATH=$PATH:$ANDROID_SDK_ROOT/platform-tools
+PATH="$PATH:$ANDROID_SDK_ROOT/tools"
 PATH="$PATH:$ANDROID_PLATFORM_TOOLS"
-PATH="$PATH:/usr/local/opt/openssl/bin"
+PATH="$PATH:$HOME/.fastlane/bin"
 PATH="$PATH:$HOME/fvm/default/bin"
 PATH="$PATH:$HOME/fvm/default/.pub-cache/bin"
 PATH="$PATH:$HOME/fvm/default/bin/cache/dart-sdk/bin"
 PATH="$PATH:$HOME/.pub-cache/bin"
 PATH="$PATH:$HOME/.rvm/bin"
+PATH="$PATH:/usr/local/opt/openssl@1.1/bin"
+PATH="$PATH:/usr/local/sbin"
 export PATH
 
 export REACT_EDITOR=nvim
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+#openssl
+export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
