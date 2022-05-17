@@ -122,6 +122,7 @@ alias fei="flutter emulators --launch apple_ios_simulator"
 alias fea="flutter emulators --launch Pixel_4_XL_API_26"
 alias fw="flutter packages pub run build_runner watch --delete-conflicting-outputs"
 alias ft="flutter test"
+alias redis="/usr/local/opt/redis/bin/redis-server /usr/local/etc/redis.conf"
 
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
