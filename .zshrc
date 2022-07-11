@@ -6,6 +6,8 @@ eval $(gdircolors -b $HOME/LS_COLORS)
 
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -14,6 +16,9 @@ ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
+
+# Forgit copy command
+FORGIT_COPY_CMD='xclip -selection clipboard'
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -32,7 +37,7 @@ CASE_SENSITIVE="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -54,14 +59,17 @@ CASE_SENSITIVE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-export NVM_LAZY_LOAD=true
-export NVM_COMPLETION=true
-export NVM_AUTO_USE=true
-
 
 source ~/.oh-my-zsh/custom/plugins/forgit
 
-plugins=(asdf forgit git)
+# fpath=($HOME/.asdf/completions $fpath)
+
+plugins=(
+  asdf 
+  git
+  forgit
+  zsh-syntax-highlighting
+)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -108,13 +116,13 @@ alias rrs="npx react-native start"
 alias rrsr="rrs --reset-cache"
 alias tt="npm test"
 alias e2e="npm run test:e2e"
-alias getip="ifconfig en0 | awk '$1 == \"inet\" {print $2}'"
+alias getip="ipconfig getifaddr en0"
 alias tmn="tmux new -s"
 alias tat="tmux attach -t"
 alias cdev="cd ~/development && tmux new -s dev"
 alias cnm="rm -rf node_modules && npm i"
-alias apk="cd android && ./gradlew clean && ./gradlew assembleRelease && open . && cd .."
-alias bla="cd android && ./gradlew clean && ./gradlew bundleRelease && open . && cd .."
+alias apk="cd android && ./gradlew clean && ./gradlew assembleRelease; cd ..; open android/app/build/outputs/apk/release"
+alias bla="cd android && ./gradlew clean && ./gradlew bundleRelease; cd ..; open android/app/build/outputs/bundle/release"
 alias fr="flutter run"
 alias fp="flutter pub get"
 alias fe="flutter emulators"
@@ -123,9 +131,10 @@ alias fea="flutter emulators --launch Pixel_4_XL_API_26"
 alias fw="flutter packages pub run build_runner watch --delete-conflicting-outputs"
 alias ft="flutter test"
 alias redis="/usr/local/opt/redis/bin/redis-server /usr/local/etc/redis.conf"
-
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+alias mr="npm run migration:run"
+alias mrr="npm run migration:revert"
+alias mg="npm run migration:generate"
+alias amend="git commit --amend --no-edit"
 
 ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 PATH=$PATH:$ANDROID_SDK_ROOT/emulator
@@ -154,3 +163,5 @@ export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

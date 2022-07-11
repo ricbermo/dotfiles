@@ -13,10 +13,10 @@
 4. `brew install ripgrep` for faster CTRLP
 5. `brew install neovim`
 6. `brew install tmux`
+7. `brew install fzf`
 8. Install [LS_COLORS](https://github.com/trapd00r/LS_COLORS/issues/150#issuecomment-600887571)
 10. `git clone https://github.com/wfxr/forgit ~/.oh-my-zsh/custom/plugins/forgit`
-11. `git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm`
-12. Run `sudo xcode-select --switch /Applications/Xcode.app`
+11. Run `sudo xcode-select --switch /Applications/Xcode.app`
 
 ## Tmux
 1. [plugin manager](https://github.com/tmux-plugins/tpm)
@@ -27,9 +27,6 @@
 1. `ln -s ~/development/dotfiles/init.vim ~/.config/nvim/init.vim`
 2. `ln -s ~/development/dotfiles/.tmux.conf ~/.tmux.conf`
 3. `ln -s ~/development/dotfiles/.zshrc ~/.zshrc`
-4. `ln -s ~/development/dotfiles/after/ ~/.config/nvim/`
-5. `ln -s ~/development/dotfiles/coc-settings.json ~/.config/nvim/coc-settings.json`
-6. `ln -s ~/development/dotfiles/alacritty.yml  ~/.config/alacritty/alacritty.yml`
 
 ### for JS developement
 1. Install node using NVM, then set it as default using `nvm alias default <version>`
