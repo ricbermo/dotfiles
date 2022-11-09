@@ -1,6 +1,0 @@
-" prettier formatting tool
-let g:ale_fixers = {}
-let g:ale_fixers['javascript'] = ['prettier_eslint']
-
-"vim-test
-let test#project_root = "~/path/to/project"
