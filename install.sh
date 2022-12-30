@@ -26,9 +26,13 @@ echo "Installing packages..."
 brew install python3 fzf coreutils wget ripgrep
 
 # Fonts
-brew tap shaunsingh/SFMono-Nerd-Font-Ligaturized
-brew install --cask font-sf-mono-nerd-font-ligaturized
-brew install --cask  font-fira-mono-nerd-font
+echo "Installing fonts..."
+brew tap homebrew/cask-fonts
+brew install --cask font-hack-nerd-font
+brew install --cask sf-symbols
+git clone git@github.com:shaunsingh/SFMono-Nerd-Font-Ligaturized.git /tmp/SFMono_Nerd_Font
+mv /tmp/SFMono_Nerd_Font/* $HOME/Library/Fonts
+rm -rf /tmp/SFMono_Nerd_Font/
 curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v1.0.4/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
 
 # Oh-My-Zsh
@@ -95,10 +99,8 @@ brew services start yabai
 
 # Sketchybar
 echo "Installing Sketchybar..."
-brew install --cask sf-symbols
 brew install jq
 brew install switchaudio-osx
-brew install gh
 brew install sketchybar
 ln -s ~/development/dotfiles/sketchybar ~/.config/
 chmod +x ~/.config/sketchybar/plugins/*
