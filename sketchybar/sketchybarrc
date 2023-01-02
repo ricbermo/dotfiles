@@ -61,9 +61,10 @@ source "$ITEM_DIR/spotify.sh"
 
 # Right
 source "$ITEM_DIR/calendar.sh"
-source "$ITEM_DIR/input.sh"
 source "$ITEM_DIR/wifi.sh"
 source "$ITEM_DIR/battery.sh"
+source "$ITEM_DIR/bluetooth.sh"
+source "$ITEM_DIR/input.sh"
 source "$ITEM_DIR/volume.sh"
 
 # Forcing all item scripts to run (never do this outside of sketchybarrc)

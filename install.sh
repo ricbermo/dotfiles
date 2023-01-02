@@ -102,6 +102,7 @@ echo "Installing Sketchybar..."
 brew install jq
 brew install switchaudio-osx
 brew install sketchybar
+brew install blueutil
 ln -s ~/development/dotfiles/sketchybar ~/.config/
 chmod +x ~/.config/sketchybar/plugins/*
 brew services start sketchybar

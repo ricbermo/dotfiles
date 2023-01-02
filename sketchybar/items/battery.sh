@@ -5,5 +5,4 @@ sketchybar  --add       item        battery     right \
                                     icon.font="$FONT:Semibold:12.0"        \
                                     label.color=$WHITE       \
                                     icon.color=$WHITE           \
-                                    label.padding_right=8                   \
             --subscribe battery     system_woke
