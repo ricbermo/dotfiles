@@ -105,3 +105,7 @@ brew install sketchybar
 ln -s ~/development/dotfiles/sketchybar ~/.config/
 chmod +x ~/.config/sketchybar/plugins/*
 brew services start sketchybar
+
+# Lazygit
+echo "Installing Lazygit..."
+brew install lazygit

@@ -69,6 +69,7 @@ plugins=(
   git
   forgit
   zsh-syntax-highlighting
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -135,6 +136,7 @@ alias mr="npm run migration:run"
 alias mrr="npm run migration:revert"
 alias mg="npm run migration:generate"
 alias amend="git commit --amend --no-edit"
+alias lg="lazygit"
 
 ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 PATH=$PATH:$ANDROID_SDK_ROOT/emulator
