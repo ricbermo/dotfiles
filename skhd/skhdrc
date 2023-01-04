@@ -55,7 +55,7 @@ ctrl + lalt - e : yabai -m space --balance
 # Enable / Disable gaps in current workspace: ctrl + lalt - g
 ctrl + lalt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
 
-# Enable / Disable gaps in current workspace: ctrl + lalt - g
+# Enable / Disable borders in current workspace: ctrl + lalt - g
 ctrl + lalt - b : yabai -m config window_border off 
 shift + ctrl + lalt - b : yabai -m config window_border on
 
