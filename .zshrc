@@ -138,7 +138,7 @@ alias mg="npm run migration:generate"
 alias amend="git commit --amend --no-edit"
 alias lg="lazygit"
 
-# ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
+export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 export ANDROID_HOME=$HOME/Library/Android/sdk
 PATH=$PATH:$ANDROID_HOME/emulator
 PATH=$PATH:$ANDROID_HOME/tools
