@@ -7,4 +7,4 @@ case ${SOURCE} in
 'com.apple.keylayout.Spanish-ISO') LABEL='ES' ;;
 esac
 
-sketchybar --set $NAME label="$LABEL"
+sketchybar --set $NAME label="$LABEL" background.padding_right=20
