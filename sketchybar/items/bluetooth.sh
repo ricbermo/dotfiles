@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 bluetooth_alias=(
-	icon.drawing=off
+	icon.drawing=on
 	alias.color="$PEACH"
 	background.padding_right=0
 	align=right
@@ -13,7 +13,7 @@ bluetooth_alias=(
 
 bluetooth_details=(
 	background.corner_radius=12
-	background.padding_left=5
+	background.padding_left=10
 	background.padding_right=10
 )
 
