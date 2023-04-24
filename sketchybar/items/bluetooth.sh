@@ -1,9 +1,9 @@
 #!/bin/bash
 
 bluetooth_alias=(
-	icon.drawing=on
+	icon.drawing=off
+  label.drawing=off
 	alias.color="$PEACH"
-	background.padding_right=0
 	align=right
 	click_script="$PLUGIN_DIR/bt_click.sh"
 	script="$PLUGIN_DIR/bluetooth.sh"
@@ -26,4 +26,3 @@ sketchybar --add alias  "Control Center,Bluetooth" right                        
                                                                                             \
             --add       item              bluetooth.details popup.bluetooth.alias           \
             --set       bluetooth.details "${bluetooth_details[@]}"                         \
-                                          click_script="sketchybar --set bluetooth.alias popup.drawing=off"

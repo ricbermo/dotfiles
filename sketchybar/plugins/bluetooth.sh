@@ -41,6 +41,8 @@ render_popup() {
 		bluetooth_device=(
 			label="$(echo "$device" | grep -Eo '".*."' | sed 's/"//g')"
 			label.align=right
+      label.padding_left=10
+      label.padding_right=10
 			icon="$COUNT_PAIRED : $PREV_COUNT"
 			icon.drawing=off
 			click_script="sketchybar --set $NAME popup.drawing=off"

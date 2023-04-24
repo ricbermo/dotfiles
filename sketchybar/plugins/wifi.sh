@@ -6,5 +6,5 @@ SSID="$(echo "$CURRENT_WIFI" | grep -o "SSID: .*" | sed 's/^SSID: //')"
 if [ "$SSID" = "" ]; then
   sketchybar --set $NAME label="" icon="􀙈 "
 else
-  sketchybar --set $NAME label="$SSID" icon="􀙇 "
+  sketchybar --set $NAME label="$SSID" icon="􀙇 " label.padding_right=7
 fi

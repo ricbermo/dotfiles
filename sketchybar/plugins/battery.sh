@@ -28,5 +28,5 @@ if [[ $CHARGING != "" ]]; then
   ICON=$BATTERY_CHARGING
 fi
 
-sketchybar --set $NAME drawing=on icon="$ICON" icon.color=$COLOR
+sketchybar --set $NAME drawing=on icon="$ICON" icon.color=$COLOR icon.padding_right=5
 
