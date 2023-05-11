@@ -77,8 +77,8 @@ bat cache --build
 ln -s ~/development/dotfiles/bat.config ~/.config/bat/config
 
 # ASDF Version Manager, Node and Python
-echo "Installing Node and Python..."
-brew install asdf gpg gawk
+echo "Installing Node, Python and tooling..."
+brew install asdf gpg gawk stylua ruff
 asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf plugin add python
 asdf install nodejs latest
