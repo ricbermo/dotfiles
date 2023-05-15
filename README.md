@@ -21,6 +21,7 @@
 - `ln -s ~/development/dotfiles/.tmux.conf ~/.tmux.conf`
 - `ln -s ~/development/dotfiles/.zshrc ~/.zshrc`
 - `ln -s ~/development/dotfiles/kitty ~/.config/`
+- `ln -s ~/development/dotfiles/nvim-chad-custom ~/.config/nvim/lua/custom`
 
 ### Setup Yanc
 - https://github.com/ricbermo/yanc
