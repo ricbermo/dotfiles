@@ -110,3 +110,7 @@ brew services start sketchybar
 # Lazygit
 echo "Installing Lazygit..."
 brew install lazygit
+
+# Conda (Miniforge)
+brew install miniforge
+conda config --set auto_activate_base false
