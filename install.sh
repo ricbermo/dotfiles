@@ -112,5 +112,5 @@ echo "Installing Lazygit..."
 brew install lazygit
 
 # Conda (Miniforge)
-brew install miniforge
+asdf install python miniforge3-latest
 conda config --set auto_activate_base false
