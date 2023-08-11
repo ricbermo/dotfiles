@@ -62,8 +62,6 @@ ENABLE_CORRECTION="true"
 
 source ~/.oh-my-zsh/custom/plugins/forgit
 
-# fpath=($HOME/.asdf/completions $fpath)
-
 plugins=(
   asdf 
   git
@@ -152,16 +150,15 @@ PATH="$PATH:$HOME/fvm/default/.pub-cache/bin"
 PATH="$PATH:$HOME/fvm/default/bin/cache/dart-sdk/bin"
 PATH="$PATH:$HOME/.pub-cache/bin"
 PATH="$PATH:$HOME/.rvm/bin"
-PATH="$PATH:/usr/local/opt/openssl@1.1/bin"
-PATH="$PATH:/usr/local/sbin"
 export PATH
 
 export REACT_EDITOR=nvim
 
 #openssl
-export LDFLAGS="-L/usr/local/opt/openssl@1.1/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@1.1/include"
-export PKG_CONFIG_PATH="/usr/local/opt/openssl@1.1/lib/pkgconfig"
+export PATH="/usr/local/opt/openssl@3/bin:$PATH"
+export LDFLAGS="-L/usr/local/opt/openssl@3/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl@3/include"
+export PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"

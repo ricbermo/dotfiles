@@ -88,13 +88,13 @@ asdf install python latest
 echo "Installing skhd..."
 brew install koekeishiya/formulae/skhd
 ln -s ~/development/dotfiles/skhd ~/.config/
-brew services start skhd
+skhd --start-service
 
 # Yabai
 echo "Installing Yabai..."
 brew install koekeishiya/formulae/yabai
 ln -s ~/development/dotfiles/yabai ~/.config/
-brew services start yabai
+yabai --start-service
 
 
 # Sketchybar
