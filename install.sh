@@ -47,9 +47,9 @@ ln -s ~/development/dotfiles/.zshrc ~/.zshrc
 exec zsh
 
 # Kitty
-echo "Installing Kitty..."
-curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
-ln -s ~/development/dotfiles/kitty ~/.config/
+# echo "Installing Kitty..."
+# curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
+# ln -s ~/development/dotfiles/kitty ~/.config/
 
 # TMUX
 brew install tmux
@@ -112,5 +112,5 @@ echo "Installing Lazygit..."
 brew install lazygit
 
 # Conda (Miniforge)
-asdf install python miniforge3-latest
-conda config --set auto_activate_base false
+# asdf install python miniforge3-latest
+# conda config --set auto_activate_base false
