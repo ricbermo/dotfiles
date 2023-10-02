@@ -17,8 +17,6 @@ ZSH_THEME="robbyrussell"
 # Uncomment the following line to use case-sensitive completion.
 CASE_SENSITIVE="true"
 
-# Forgit copy command
-FORGIT_COPY_CMD='xclip -selection clipboard'
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -60,12 +58,9 @@ ENABLE_CORRECTION="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-source ~/.oh-my-zsh/custom/plugins/forgit
-
 plugins=(
   asdf 
   git
-  forgit
   zsh-syntax-highlighting
   zsh-autosuggestions
 )

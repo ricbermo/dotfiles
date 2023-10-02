@@ -86,6 +86,8 @@ asdf plugin add nodejs https://github.com/asdf-vm/asdf-nodejs.git
 asdf plugin add python
 asdf install nodejs latest
 asdf install python latest
+asdf global nodejs latest
+asdf global python latest
 
 # SKHD
 echo "Installing skhd..."
