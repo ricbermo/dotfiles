@@ -1,6 +1,6 @@
 zmodload zsh/zprof
 # LS_COLORS support https://github.com/trapd00r/LS_COLORS
-eval $(gdircolors -b $HOME/LS_COLORS)
+source $HOME/lscolors.sh
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 

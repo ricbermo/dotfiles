@@ -18,7 +18,10 @@ xcode-select --install
 
 # Install Homebrew
 echo "Installing Brew..."
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+NONINTERACTIVE=1 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+(echo; echo 'eval "$(/opt/homebrew/bin/brew shellenv)"') >> /Users/ricbermo/.zprofile
+sleep 1
+eval "$(/opt/homebrew/bin/brew shellenv)"
 brew analytics off
 
 # General packages
@@ -30,20 +33,20 @@ echo "Installing fonts..."
 brew tap homebrew/cask-fonts
 brew install --cask font-hack-nerd-font
 brew install --cask sf-symbols
-git clone git@github.com:shaunsingh/SFMono-Nerd-Font-Ligaturized.git /tmp/SFMono_Nerd_Font
-mv /tmp/SFMono_Nerd_Font/* $HOME/Library/Fonts
-rm -rf /tmp/SFMono_Nerd_Font/
+brew tap shaunsingh/SFMono-Nerd-Font-Ligaturized
+brew install --cask font-sf-mono-nerd-font-ligaturized
 curl -L https://github.com/kvndrsslr/sketchybar-app-font/releases/download/v1.0.4/sketchybar-app-font.ttf -o $HOME/Library/Fonts/sketchybar-app-font.ttf
 
 # Oh-My-Zsh
 echo "Installing ZSH..."
-wget https://raw.github.com/trapd00r/LS_COLORS/master/LS_COLORS -O $HOME/LS_COLORS
+wget https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/lscolors.sh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-echo "Setting up ZSH..."
-git clone https://github.com/wfxr/forgit ~/.oh-my-zsh/custom/plugins/forgit
-brew install zsh-syntax-highlighting
-brew install zsh-autosuggestions
-ln -s ~/development/dotfiles/.zshrc ~/.zshrc
+
+# echo "Setting up ZSH..."
+git clone https://github.com/wfxr/forgit.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/forgit
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
+ln -sf ~/development/dotfiles/.zshrc ~/.zshrc
 exec zsh
 
 # Kitty
@@ -55,11 +58,11 @@ exec zsh
 brew install tmux
 echo "Installing Tmux..."
 git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-ln -s ~/development/dotfiles/.tmux.conf ~/.tmux.conf
+ln -sf ~/development/dotfiles/.tmux.conf ~/.tmux.conf
 
 # Neovim
 echo "Installing Neovim..."
-brew install neovim
+brew install neovim gnu-sed
 git clone https://github.com/ricbermo/yanc ~/.config/nvim
 
 # Git Delta
@@ -99,10 +102,9 @@ yabai --start-service
 
 # Sketchybar
 echo "Installing Sketchybar..."
-brew install jq
-brew install switchaudio-osx
+brew install jq switchaudio-osx blueutil
+brew tap FelixKratz/formulae
 brew install sketchybar
-brew install blueutil
 ln -s ~/development/dotfiles/sketchybar ~/.config/
 chmod +x ~/.config/sketchybar/plugins/*
 brew services start sketchybar
