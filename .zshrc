@@ -124,7 +124,7 @@ alias fei="flutter emulators --launch apple_ios_simulator"
 alias fea="flutter emulators --launch Pixel_4_XL_API_26"
 alias fw="flutter packages pub run build_runner watch --delete-conflicting-outputs"
 alias ft="flutter test"
-alias redis="/usr/local/opt/redis/bin/redis-server /usr/local/etc/redis.conf"
+alias redis="/opt/homebrew/opt/redis/bin/redis-server /opt/homebrew/etc/redis.conf"
 alias mr="npm run migration:run"
 alias mrr="npm run migration:revert"
 alias mg="npm run migration:generate"
@@ -160,19 +160,3 @@ if command -v pyenv 1>/dev/null 2>&1; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/ricardo/.asdf/installs/python/miniforge3-latest/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/ricardo/.asdf/installs/python/miniforge3-latest/etc/profile.d/conda.sh" ]; then
-        . "/Users/ricardo/.asdf/installs/python/miniforge3-latest/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/ricardo/.asdf/installs/python/miniforge3-latest/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
-

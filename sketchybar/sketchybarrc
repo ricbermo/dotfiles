@@ -79,7 +79,6 @@ source "$ITEM_DIR/ble_headset.sh"
 source "$ITEM_DIR/bluetooth.sh"
 source "$ITEM_DIR/volume.sh"
 source "$ITEM_DIR/input.sh"
-source "$ITEM_DIR/cpu.sh"
 
 # Forcing all item scripts to run (never do this outside of sketchybarrc)
 sketchybar --update
