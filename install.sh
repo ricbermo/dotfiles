@@ -26,7 +26,7 @@ brew analytics off
 
 # General packages
 echo "Installing packages..."
-brew install python3 fzf coreutils wget ripgrep
+brew install python3 fzf coreutils wget ripgrep fd
 
 # Fonts
 echo "Installing fonts..."
