@@ -150,10 +150,12 @@ export PATH
 export REACT_EDITOR=nvim
 
 #openssl
-export PATH="/usr/local/opt/openssl@3/bin:$PATH"
-export LDFLAGS="-L/usr/local/opt/openssl@3/lib"
-export CPPFLAGS="-I/usr/local/opt/openssl@3/include"
-export PKG_CONFIG_PATH="/usr/local/opt/openssl@3/lib/pkgconfig"
+OPENSSL_PATH=$(brew --prefix openssl)
+
+export PATH="$OPENSSL_PATH/bin:$PATH"
+export LDFLAGS="-L$OPENSSL_PATH/lib"
+export CPPFLAGS="-I$OPENSSL_PATH/include"
+export PKG_CONFIG_PATH="$OPENSSL_PATH/lib/pkgconfig"
 
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
