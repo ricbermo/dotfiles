@@ -170,3 +170,6 @@ fi
 [[ -f /Users/ricbermo/.dart-cli-completion/zsh-config.zsh ]] && . /Users/ricbermo/.dart-cli-completion/zsh-config.zsh || true
 ## [/Completion]
 
+
+# Created by `pipx` on 2024-11-09 22:43:49
+export PATH="$PATH:/Users/ricbermo/.local/bin"
