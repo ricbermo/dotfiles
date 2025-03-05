@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
 # Unload the macOS WindowManager process
 launchctl unload -F /System/Library/LaunchAgents/com.apple.WindowManager.plist > /dev/null 2>&1 &
 
@@ -69,24 +72,25 @@ setup_space 3 TODO
 setup_space 4 Media
 
 # Assign apps to specific spaces
-yabai -m rule --add app="^(Arc|Discord)$" space=1
-yabai -m rule --add app="^(VSCodium|iTerm2|Xcode)$" space=2
-yabai -m rule --add app="^(Things|Notes|Reminders)$" space=3
-yabai -m rule --add app="^(Music)$" space=4
+yabai -m rule --add app="^(Microsoft Edge|Slack)$" space=1
+yabai -m rule --add app="^(VSCodium|iTerm2)$" space=2
+yabai -m rule --add app="^(Things|Notes|Reminders|qemu-system-aarch64|Xcode)$" space=3
+yabai -m rule --add app="^(Music|Reactotron)$" space=4
 
 # Override default layouts
 yabai -m config --space 4 layout stack
 
 # Manage apps and windows
-yabai -m rule --add label="Mail messages" app="Mail" title="(New|Message|Re)" manage=off layer=above
-yabai -m rule --add app="^(Steam Helper|Raycast|Calculator|Software\ Update|Dictionary|VLC|System\ Settings|zoom.us|Photo\ Booth|Archive\ Utility|Clock|Plexamp|Alfred\ Preferences|ImageOptim|The\ Unarchiver|Installer|Hosting\ AU)$" manage=off
+yabai -m rule --add app="^(Calculator|Software\ Update|Dictionary|VLC|System\ Settings|zoom.us|Photo\ Booth|Archive\ Utility|Clock|The\ Unarchiver|Installer)$" manage=off
 yabai -m rule --add label="Small windows" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
-yabai -m rule --add app="^(Trash|Copy|Bin|Move|About This Mac|Info|Preferences)$" manage=off layer=above
+yabai -m rule --add app="^(Trash|Copy|Bin|Move|About This Mac|Info|Preferences)$" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About\ This\ Mac" manage=off
 yabai -m rule --add label="Activity Windows" title="^Activity$" manage=off
-yabai -m rule --add app="qemu-system-aarch64" title="/\bAndroid\ Emulator\b/i"manage=off
-yabai -m rule --add app="Xcode" title="Archives"manage=off
+yabai -m rule --add app="Xcode" title="Archives" manage=off
+yabai -m rule --add app="qemu-system-aarch64" title="Android Emulator - Medium_Phone_API_35:5554" manage=off
 
 yabai -m config layout bsp
 
 echo "yabai configuration loaded.."
+# Apply rules to existing windows
+yabai -m rule --apply

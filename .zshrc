@@ -59,7 +59,7 @@ ENABLE_CORRECTION="true"
 # Add wisely, as too many plugins slow down shell startup.
 
 plugins=(
-  asdf 
+  asdf
   git
   zsh-syntax-highlighting
   zsh-autosuggestions
@@ -134,6 +134,7 @@ alias lg="lazygit"
 export ANDROID_SDK_ROOT=$HOME/Library/Android/sdk
 export ANDROID_HOME=$HOME/Library/Android/sdk
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
+export ASDF_DATA_DIR="$HOME/.asdf"
 
 PATH=$PATH:$ANDROID_HOME/emulator
 PATH=$PATH:$ANDROID_HOME/tools
@@ -147,6 +148,8 @@ PATH="$PATH:$HOME/fvm/default/.pub-cache/bin"
 PATH="$PATH:$HOME/fvm/default/bin/cache/dart-sdk/bin"
 PATH="$PATH:$HOME/.pub-cache/bin"
 PATH="$PATH:$HOME/.rvm/bin"
+PATH="$ASDF_DATA_DIR/shims:$PATH"
+# PATH="$PATH:/opt/homebrew/opt/libpq/bin"
 export PATH
 
 export REACT_EDITOR=nvim
