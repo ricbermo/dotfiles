@@ -106,6 +106,8 @@ alias nv="nvim"
 alias cl="clear"
 alias rra="npx react-native run-android"
 alias rri="npx react-native run-ios"
+alias rre="npx expo run:ios"
+alias rrea="npx expo run:android"
 alias rrs="npx react-native start"
 alias rrsr="rrs --reset-cache"
 alias tt="npm test"
@@ -176,3 +178,6 @@ fi
 
 # Created by `pipx` on 2024-11-09 22:43:49
 export PATH="$PATH:/Users/ricbermo/.local/bin"
+
+# Added by Windsurf
+export PATH="/Users/ricbermo/.codeium/windsurf/bin:$PATH"
