@@ -69,4 +69,4 @@ shift + lalt - r : sketchybar --exit
 
 ## Misc
 # Open new Kitty window
-lalt - t : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+# lalt - t : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
