@@ -17,6 +17,7 @@ defaults write com.apple.dock autohide -bool true
 defaults write NSGlobalDomain _HIHideMenuBar -bool true
 defaults write com.apple.finder ShowStatusBar -bool false
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool YES
+defaults write -g NSWindowShouldDragOnGesture -bool true
 
 
 # Install xCode cli tools
@@ -97,20 +98,11 @@ asdf global nodejs latest
 asdf global python latest
 asdf global ruby 3.2.2
 
-# SKHD
-echo "Installing skhd..."
-brew install koekeishiya/formulae/skhd
-ln -s ~/development/dotfiles/skhd ~/.config/
-skhd --start-service
-
-# Yabai
-echo "Installing Yabai..."
-brew install koekeishiya/formulae/yabai
-ln -s ~/development/dotfiles/yabai ~/.config/
-echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa" | sudo tee /private/etc/sudoers.d/yabai
-chmod +x ~/.config/yabai/yabairc
-yabai --start-service
-
+# AeroSpace
+brew install --cask nikitabobko/tap/aerospace
+brew tap FelixKratz/formulae
+brew install borders
+ln -s ~/development/dotfiles/aerospace/aerospace.toml ~/.aerospace.toml
 
 # Sketchybar
 echo "Installing Sketchybar..."
