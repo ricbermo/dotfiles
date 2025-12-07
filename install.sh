@@ -129,5 +129,14 @@ brew install lazygit
 # asdf install python miniforge3-latest
 # conda config --set auto_activate_base false
 
+
+# TmuxAI
+echo "Installing TmuxAI..."
+curl -fsSL https://get.tmuxai.dev | bash
+ln -sf ~/development/dotfiles/tmuxai/config.yaml ~/.config/tmuxai
+
+# Zoxide, a smarted CD command
+echo "Installing Zoxide..."
+brew install zoxide
 # Keep this at the end so the script keeps running
 exec zsh

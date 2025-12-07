@@ -35,7 +35,7 @@ CASE_SENSITIVE="true"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # COMPLETION_WAITING_DOTS="true"
@@ -179,5 +179,4 @@ fi
 # Created by `pipx` on 2024-11-09 22:43:49
 export PATH="$PATH:/Users/ricbermo/.local/bin"
 
-# Added by Windsurf
-export PATH="/Users/ricbermo/.codeium/windsurf/bin:$PATH"
+eval "$(zoxide init zsh)"
