@@ -12,10 +12,18 @@ after-login-command = []
 after-startup-command = ['exec-and-forget sketchybar']
 
 # Notify Sketchybar about workspace change
-exec-on-workspace-change = ['/bin/bash', '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+# exec-on-workspace-change = ['/bin/bash', '-c',
+#     'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE'
+# ]
+on-focus-changed = [
+  "exec-and-forget osascript -e 'tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-index-jsx\"'",
 ]
 
+exec-on-workspace-change = [
+  '/bin/zsh',
+  '-c',
+  '/usr/bin/osascript -e "tell application id \"tracesOf.Uebersicht\" to refresh widget id \"simple-bar-index-jsx\""',
+]
 # Start AeroSpace at login
 start-at-login = true
 
@@ -67,7 +75,7 @@ automatically-unhide-macos-hidden-apps = false
     outer.left =       10
     outer.bottom =     10
     outer.right =      10
-    outer.top =        [{ monitor.'Built-in Retina Display' = 15 }, { monitor.'LG ULTRAGEAR' = 45 }, 0]
+    outer.top =        [{ monitor.'Built-in Retina Display' = 10 }, { monitor.'LG ULTRAGEAR' = 45 }, 0]
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
@@ -173,6 +181,7 @@ automatically-unhide-macos-hidden-apps = false
     down = 'volume down'
     up = 'volume up'
     shift-down = ['volume set 0', 'mode main']
+
 
 
 [[on-window-detected]]

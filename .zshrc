@@ -1,3 +1,10 @@
+# OPENSPEC:START
+# OpenSpec shell completions configuration
+fpath=("/Users/ricbermo/.oh-my-zsh/custom/completions" $fpath)
+autoload -Uz compinit
+compinit
+# OPENSPEC:END
+
 zmodload zsh/zprof
 # LS_COLORS support https://github.com/trapd00r/LS_COLORS
 source $HOME/lscolors.sh
@@ -180,3 +187,15 @@ fi
 export PATH="$PATH:/Users/ricbermo/.local/bin"
 
 eval "$(zoxide init zsh)"
+
+# opencode
+export PATH=/Users/ricbermo/.opencode/bin:$PATH
+
+# bun completions
+[ -s "/Users/ricbermo/.oh-my-zsh/completions/_bun" ] && source "/Users/ricbermo/.oh-my-zsh/completions/_bun"
+
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
