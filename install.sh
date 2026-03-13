@@ -33,7 +33,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 brew analytics off
 
 # General packages
-echo "Installing packages..."
+echo "Installing packages and goodies..."
 brew install python3 fzf coreutils wget ripgrep fd
 
 # Fonts
@@ -49,6 +49,7 @@ wget -O https://raw.githubusercontent.com/trapd00r/LS_COLORS/master/lscolors.sh
 sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
 # echo "Setting up ZSH..."
+mkdir -p "$HOME/.zsh/cache"
 git clone https://github.com/wfxr/forgit.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/forgit
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
@@ -119,6 +120,7 @@ brew services start sketchybar
 echo "Installing development packages..."
 brew install fsouza/prettierd/prettierd
 brew install redis
+brew install worktrunk && wt config shell install
 
 # Lazygit
 echo "Installing Lazygit..."
@@ -129,14 +131,15 @@ brew install lazygit
 # asdf install python miniforge3-latest
 # conda config --set auto_activate_base false
 
-
-# TmuxAI
-echo "Installing TmuxAI..."
-curl -fsSL https://get.tmuxai.dev | bash
-ln -sf ~/development/dotfiles/tmuxai/config.yaml ~/.config/tmuxai
-
 # Zoxide, a smarted CD command
 echo "Installing Zoxide..."
 brew install zoxide
+
+
+# Eza, a better ls
+echo "Installing eza..."
+brew install eza
+
+
 # Keep this at the end so the script keeps running
 exec zsh
