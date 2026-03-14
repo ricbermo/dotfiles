@@ -25,11 +25,29 @@ SOURCE_FILES=(
   "$ROOT_DIR/stow/tmuxai/.config/tmuxai/config.yaml"
 )
 
+NON_EXECUTABLE_CONFIGS=(
+  "$ROOT_DIR/stow/sketchybar/.config/sketchybar/init.lua"
+  "$ROOT_DIR/stow/sketchybar/.config/sketchybar/bar.lua"
+  "$ROOT_DIR/stow/sketchybar/.config/sketchybar/helpers/.gitignore"
+  "$ROOT_DIR/stow/sketchybar/.config/sketchybar/helpers/event_providers/cpu_load/cpu.h"
+  "$ROOT_DIR/stow/sketchybar/.config/sketchybar/helpers/event_providers/cpu_load/cpu_load.c"
+  "$ROOT_DIR/stow/sketchybar/.config/sketchybar/helpers/event_providers/cpu_load/makefile"
+)
+
 assert_file_exists() {
   local path=$1
 
   if [ ! -f "$path" ]; then
     printf 'Expected file to exist: %s\n' "$path"
+    exit 1
+  fi
+}
+
+assert_not_executable() {
+  local path=$1
+
+  if [ -x "$path" ]; then
+    printf 'Expected non-executable config file: %s\n' "$path"
     exit 1
   fi
 }
@@ -134,6 +152,11 @@ load_stow_packages "$PACKAGES_FILE"
 
 for source_file in "${SOURCE_FILES[@]}"; do
   assert_file_exists "$source_file"
+done
+
+for config_file in "${NON_EXECUTABLE_CONFIGS[@]}"; do
+  assert_file_exists "$config_file"
+  assert_not_executable "$config_file"
 done
 
 if ! command -v stow >/dev/null 2>&1; then
