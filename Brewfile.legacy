@@ -1,0 +1,4 @@
+# Legacy
+tap "shaunsingh/SFMono-Nerd-Font-Ligaturized"
+
+cask "font-sf-mono-nerd-font-ligaturized"

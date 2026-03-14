@@ -1,0 +1,9 @@
+# Optional
+tap "fsouza/prettierd"
+
+brew "fsouza/prettierd/prettierd"
+brew "redis"
+brew "worktrunk"
+brew "lazygit"
+
+cask "sf-symbols"
