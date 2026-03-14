@@ -1,0 +1,51 @@
+# Optional: specify which model to use by default
+default_model: "fast"
+
+models:
+  fast:
+    provider: "openrouter"
+    model: "x-ai/grok-4.1-fast"
+    api_key: "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"
+
+  gpt-free:
+    provider: "openrouter"
+    model: "openai/gpt-oss-20b:free"
+    api_key: "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"
+
+  # smart:
+  #   provider: "openrouter"
+  #   model: "google/gemini-2.5-prod"
+  #   api_key: "sk-or-your-openrouter-key"
+  #
+  # # You can use any chat completion compatible endpoint as base_url
+  # anthropic:
+  #   provider: "openrouter"
+  #   model: "claude-3-5-sonnet-20241022"
+  #   api_key: "your-anthropic-api-key"
+  #   base_url: "https://api.anthropic.com"
+  #
+  # github-copilot:
+  #   provider: "openrouter"
+  #   model: "claude-sonnet-4.5"
+  #   api_key: "your-github-copilot-api-key"
+  #   base_url: "https://api.githubcopilot.com"
+  #
+  # local-llama:
+  #   provider: "openrouter"
+  #   model: "gemma3:1b"
+  #   api_key: "sk-or-your-openrouter-key"
+  #   base_url: http://localhost:11434/v1
+  #
+  # # Responses API
+  # codex:
+  #   provider: "openai"
+  #   model: "gpt-5-codex"
+  #   api_key: "sk-or-your-openrouter-key"
+  #
+  # azure-gpt4:
+  #   provider: "azure"
+  #   model: "gpt-4o"
+  #   api_key: "your-azure-openai-api-key"
+  #   api_base: "https://your-resource.openai.azure.com/"
+  #   api_version: "2025-04-01-preview"
+  #   deployment_name: "gpt-4o"

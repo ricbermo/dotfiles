@@ -1,0 +1,7 @@
+zsh
+tmux
+git
+aerospace
+sketchybar
+bat
+tmuxai
