@@ -22,6 +22,7 @@ Packages that map to current dotfiles usage and day-to-day local setup.
 
 - `FelixKratz/formulae` (for `borders`, `sketchybar`)
 - `nikitabobko/tap` (for `aerospace` cask)
+- `xcodesorg/made` (for `xcodes`)
 
 ### formulae
 
@@ -38,16 +39,26 @@ Packages that map to current dotfiles usage and day-to-day local setup.
 - `git-delta`
 - `bat`
 - `asdf`
+- `codex`
+- `cocoapods`
 - `gpg`
 - `gawk`
+- `docker`
+- `fastlane`
+- `gh`
+- `ios-deploy`
+- `jq`
 - `stylua`
 - `ruff`
+- `opencode`
 - `borders`
 - `switchaudio-osx`
 - `blueutil`
 - `lua`
 - `nowplaying-cli`
 - `sketchybar`
+- `watchman`
+- `xcodesorg/made/xcodes`
 - `zoxide`
 - `eza`
 
@@ -63,11 +74,27 @@ Useful tools that are not required for the core dotfiles behavior.
 ### taps
 
 - `fsouza/prettierd`
+- `stripe/stripe-cli`
+- `supabase/tap`
 
 ### formulae
 
+- `aria2`
+- `bottom`
+- `btop`
+- `ffmpeg`
 - `fsouza/prettierd/prettierd`
+- `glow`
+- `kepubify`
+- `librsvg`
+- `mole`
+- `mysql`
+- `nmap`
+- `postgis`
+- `postgresql@14`
 - `redis`
+- `stripe/stripe-cli/stripe`
+- `supabase/tap/supabase`
 - `worktrunk`
 - `lazygit`
 
@@ -86,6 +113,12 @@ Entries currently present in `install.sh` but likely transitional or legacy.
 ### casks
 
 - `font-sf-mono-nerd-font-ligaturized`
+
+### formulae
+
+- `heroku`
+- `jpeg`
+- `python-setuptools`
 
 ### notes
 

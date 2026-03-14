@@ -1,4 +1,8 @@
 # Legacy
 tap "shaunsingh/SFMono-Nerd-Font-Ligaturized"
 
+brew "heroku"
+brew "jpeg"
+brew "python-setuptools"
+
 cask "font-sf-mono-nerd-font-ligaturized"
