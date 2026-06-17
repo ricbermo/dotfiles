@@ -1,0 +1,45 @@
+[[pre-start]]
+copy = "wt step copy-ignored"
+
+[[pre-start]]
+tmux = """
+S={{ branch | sanitize }}
+W={{ worktree_path }}
+AGENT="${WT_AGENT:-opencode}"
+
+# Optional: start clean so tmux doesn't reuse an old session/layout.
+tmux kill-session -t "$S" 2>/dev/null || true
+
+# Create the session + window.
+tmux new-session -d -s "$S" -c "$W" -n dev
+
+# Capture the initial (LEFT) pane id.
+left_pane="$(tmux display-message -p -t "$S:dev" "#{pane_id}")"
+
+# Create the RIGHT pane (full height) and capture its id.
+top_right_pane="$(tmux split-window -h -t "$left_pane" -c "$W" -p 35 -P -F "#{pane_id}")"
+
+# Split the RIGHT pane into TOP/BOTTOM; capture the NEW pane id (this is the bottom-right pane).
+bottom_right_pane="$(tmux split-window -v -t "$top_right_pane" -c "$W" -p 35 -P -F "#{pane_id}")"
+
+# Run the agent (claude or opencode) in the LEFT pane.
+tmux send-keys -t "$left_pane" "$AGENT" Enter
+
+# Run bun commands in the BOTTOM-RIGHT pane.
+tmux send-keys -t "$bottom_right_pane" "bun install; bun run dev -- --port {{ branch | hash_port }}" Enter
+
+# Focus the LEFT pane (OpenCode) on attach as well (detached sessions can lose focus).
+tmux select-pane -t "$left_pane"
+tmux set-hook -t "$S" client-attached "run-shell 'tmux select-window -t "$S:dev"; tmux select-pane -t "$left"'"
+
+echo "✓ Session '$S' — attach with: tmux attach -t $S"
+"""
+
+[list]
+url = "http://localhost:{{ branch | hash_port }}"
+
+[[pre-remove]]
+server = "lsof -ti :{{ branch | hash_port }} -sTCP:LISTEN | xargs kill 2>/dev/null || true"
+
+[[pre-remove]]
+tmux = "tmux kill-session -t {{ branch | sanitize }} 2>/dev/null || true"

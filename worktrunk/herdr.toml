@@ -1,0 +1,60 @@
+[[pre-start]]
+copy = "wt step copy-ignored"
+
+[[pre-start]]
+run = """
+W={{ worktree_path }}
+S={{ branch | sanitize }}
+
+# Open the worktree in herdr. This creates/focuses a workspace whose single
+# root pane becomes the LEFT pane (and keeps focus).
+herdr worktree open --path "$W" --label "$S" --focus 2>/dev/null || true
+"""
+
+[[pre-start]]
+run = """
+W={{ worktree_path }}
+AGENT="${WT_AGENT:-claude}"
+
+# Exactly two panes:
+#   - LEFT  (focused root pane, ~65%) -> the agent
+#   - RIGHT (smaller, ~35%)           -> bun commands
+#
+# Capture the focused root pane (left) before splitting.
+LEFT_ID=$(herdr pane list 2>/dev/null | python3 -c "import sys,json; print(next((p['pane_id'] for p in json.load(sys.stdin).get('result',{}).get('panes',[]) if p.get('focused')), ''))" 2>/dev/null)
+
+# Split a smaller pane on the RIGHT (35%) and keep focus on the left pane.
+# ratio sets the size of the original (left) pane -> 0.65 keeps the agent larger.
+RIGHT=$(herdr pane split --direction right --ratio 0.65 --cwd "$W" --no-focus 2>/dev/null)
+RIGHT_ID=$(echo "$RIGHT" | python3 -c "import sys,json; print(json.load(sys.stdin).get('result',{}).get('pane',{}).get('pane_id',''))" 2>/dev/null)
+
+# Run the bun commands in the right pane.
+if [ -n "$RIGHT_ID" ]; then
+  (sleep 1 && herdr pane run "$RIGHT_ID" "bun install && bun run dev -- --port {{ branch | hash_port }}" 2>/dev/null) &
+fi
+
+# Start the agent in the LEFT pane (no extra pane is created).
+if [ -n "$LEFT_ID" ]; then
+  herdr pane run "$LEFT_ID" "$AGENT" 2>/dev/null || true
+fi
+"""
+
+[list]
+url = "http://localhost:{{ branch | hash_port }}"
+
+[[pre-remove]]
+server = "lsof -ti :{{ branch | hash_port }} -sTCP:LISTEN | xargs kill 2>/dev/null || true"
+
+[[pre-remove]]
+run = """
+# Close the herdr workspace for this worktree
+WS=$(herdr worktree list --json 2>/dev/null | python3 -c "
+import sys,json
+data = json.load(sys.stdin)
+for wt in data.get('result',{}).get('worktrees',[]):
+    if '{{ worktree_path }}' in wt.get('path',''):
+        print(wt.get('open_workspace_id',''))
+        break
+" 2>/dev/null)
+[ -n "$WS" ] && herdr workspace close "$WS" 2>/dev/null || true
+"""

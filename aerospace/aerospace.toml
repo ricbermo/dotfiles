@@ -189,7 +189,11 @@ automatically-unhide-macos-hidden-apps = false
     run = 'layout floating'
 
 [[on-window-detected]]
-    if.app-id = 'com.apple.Passwords '
+    if.app-id = 'com.reactotron.app'
+    run = ['layout floating tiling', 'move-node-to-workspace 3']
+
+[[on-window-detected]]
+    if.app-id = 'com.apple.Passwords'
     run = 'layout floating'
 
 [[on-window-detected]]
