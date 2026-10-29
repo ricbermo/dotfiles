@@ -1,3 +1,4 @@
+source ~/.zplug/init.zsh
 # ------------------------------------------------------------
 # OpenSpec completions (managed block)
 # ------------------------------------------------------------
@@ -11,7 +12,6 @@ fpath=("$HOME/.oh-my-zsh/custom/completions" $fpath)
 # Oh My Zsh
 # ------------------------------------------------------------
 export ZSH="$HOME/.oh-my-zsh"
-ZSH_THEME="quantum"
 
 # Make completions case-sensitive.
 CASE_SENSITIVE=true
@@ -145,6 +145,7 @@ alias ohmyzsh='nvim ~/.oh-my-zsh'
 alias nv='nvim'
 alias cl='clear'
 alias getip='ipconfig getifaddr en0'
+alias pb='pi-bolt'
 
 # React Native / Expo
 alias rra='npx react-native run-android'
@@ -173,6 +174,7 @@ alias redis='/opt/homebrew/opt/redis/bin/redis-server /opt/homebrew/etc/redis.co
 alias lg='lazygit'
 alias wsc='wt switch --create'
 alias wsm='wt switch main'
+alias wr='wt remove'
 
 # Better ls via eza
 alias ls='eza --icons=always'
@@ -201,3 +203,34 @@ bla() {
   (cd android && ./gradlew clean && ./gradlew bundleRelease) &&
     open android/app/build/outputs/bundle/release
 }
+
+zplug "dracula/zsh", as:theme
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load #--verbose
+
+if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
+
+# bun completions
+[ -s "/Users/ricbermo/.bun/_bun" ] && source "/Users/ricbermo/.bun/_bun"
+
+# >>> oh-my-opencode-slim background subagents >>>
+export OPENCODE_EXPERIMENTAL_BACKGROUND_SUBAGENTS=true
+export OPENCODE_ENABLE_EXA=1
+# <<< oh-my-opencode-slim background subagents <<<
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/ricbermo/.local/bin:$PATH"

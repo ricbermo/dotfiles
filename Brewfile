@@ -38,6 +38,7 @@ brew "watchman"
 brew "xcodesorg/made/xcodes"
 brew "zoxide"
 brew "eza"
+brew "zplug"
 
 cask "font-hack-nerd-font"
 cask "nikitabobko/tap/aerospace"

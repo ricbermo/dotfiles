@@ -23,3 +23,5 @@
 	defaultBranch = main
 [coderabbit]
 	machineId = cli/8274a0716b1b4fad87d7ad559f264035
+[credential "https://git.heroku.com"]
+	helper = !heroku git:credentials
