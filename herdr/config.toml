@@ -249,3 +249,23 @@ pane_history = true
 # Maximum scrollback buffer size in bytes retained per pane terminal.
 # Matches Ghostty's default scrollback-limit behavior.
 # scrollback_limit_bytes = 10000000
+
+# >>> herdr-atuin-plugin (managed) >>>
+# Added by herdr-atuin-plugin. Herdr ignores [[keys.command]] declared
+# in a plugin manifest, so the binding has to live here. Edit the key
+# below if you like; reinstalling the plugin rewrites this block.
+[[keys.command]]
+key = "prefix+a"
+type = "plugin_action"
+command = "atuin.history-popup.shell-history"
+description = "Open Atuin history search"
+# <<< herdr-atuin-plugin (managed) <<<
+
+
+# >>> dartyuhov/herdr-blink
+[[keys.command]]
+key = "prefix+f"
+type = "plugin_action"
+command = "dartyuhov.blink.open"
+description = "switch agent"
+# <<< dartyuhov/herdr-blink
