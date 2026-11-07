@@ -109,6 +109,7 @@ export BUN_INSTALL="$HOME/.bun"
 typeset -U path PATH
 
 path=(
+  "/opt/homebrew/bin"
   "$HOME/.opencode/bin"
   "$BUN_INSTALL/bin"
   "$ASDF_DATA_DIR/shims"
